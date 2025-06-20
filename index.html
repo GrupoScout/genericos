@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial=" initial-scale="1.0">
     <title>Farmacia Pintar - Gestión de Productos</title>
     <style>
         body {
@@ -34,6 +34,7 @@
             border: none;
             border-radius: 3px;
             cursor: pointer;
+            margin: 2px;
         }
         .btn:hover {
             background-color: #4CBB17;
@@ -53,11 +54,23 @@
             color: white;
         }
         #calculadora-container {
-            display: none; /* Empezamos oculto */
+            display: none;
             border: 1px solid #49BB17;
             padding: 10px;
             margin: 10px;
             background-color: #B1FF8F;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+        #price-increase-section {
+            border-top: 1px dashed #4CBB17;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        #price-increase-section input {
+            padding: 5px;
+            margin-right: 5px;
+            width: 80px;
         }
 
         /* --- Estilos para el Ticket de Impresión --- */
@@ -144,13 +157,50 @@
         <button id="toggle-calculadora" class="btn">CALCULADORA</button>
     </div>
 
+    <div id="calculadora-container">
+        <h3>Calculadora de Precios</h3>
+        <div id="calculadora-content">
+            <label for="calc-input">Valor:</label>
+            <input type="text" id="calc-input" value="0" style="padding: 5px; margin-right: 5px;">
+            <button class="btn" onclick="addToCalc('7')">7</button>
+            <button class="btn" onclick="addToCalc('8')">8</button>
+            <button class="btn" onclick="addToCalc('9')">9</button>
+            <button class="btn" onclick="addToCalc('+')">+</button>
+            <br>
+            <button class="btn" onclick="addToCalc('4')">4</button>
+            <button class="btn" onclick="addToCalc('5')">5</button>
+            <button class="btn" onclick="addToCalc('6')">6</button>
+            <button class="btn" onclick="addToCalc('-')">-</button>
+            <br>
+            <button class="btn" onclick="addToCalc('1')">1</button>
+            <button class="btn" onclick="addToCalc('2')">2</button>
+            <button class="btn" onclick="addToCalc('3')">3</button>
+            <button class="btn" onclick="addToCalc('*')">*</button>
+            <br>
+            <button class="btn" onclick="addToCalc('0')">0</button>
+            <button class="btn" onclick="addToCalc('.')">.</button>
+            <button class="btn" onclick="clearCalc()">C</button>
+            <button class="btn" onclick="calculate()">=</button>
+            <button class="btn" onclick="addToCalc('/')">/</button>
+            <br>
+            <p>Resultado: <span id="calc-result">0</span></p>
+        </div>
+
+        <div id="price-increase-section">
+            <h4>Aumentar precios por porcentaje:</h4>
+            <label for="increase-percentage-input">Porcentaje (%):</label>
+            <input type="number" id="increase-percentage-input" value="0" min="0" max="1000">
+            <button class="btn" id="apply-increase-btn">Aplicar Aumento</button>
+            <button class="btn" id="reset-prices-btn">Reiniciar Precios</button>
+        </div>
+        </div>
     <table>
         <thead>
             <tr>
                 <th>Producto</th>
                 <th>Cantidad</th>
                 <th>Oferta</th>
-                <th>Precio</th>
+                <th>Precio Actual</th>
                 <th>Acción</th>
             </tr>
         </thead>
@@ -158,17 +208,12 @@
             </tbody>
     </table>
 
-    <div id="calculadora-container">
-        <h3>Calculadora de Precios</h3>
-        <p>Funcionalidad de calculadora irá aquí.</p>
-    </div>
-
     <div id="ticket-print-area">
         </div>
 
     <script>
-        // Tus datos de productos deben ir aquí dentro de la etiqueta <script>
-        let products = [
+        // Los datos originales de los productos (sirven como fallback si no hay nada en localStorage)
+        const defaultProducts = [
             // COMUNES
             { Producto: 'AC FOLICO 1x10', Cantidad: 10, Unidad: 'comprimidos', Oferta: 'D', PrecioLista: 2500.00, PorcentajeAumento: 0 },
             { Producto: 'AC FOLICO 5 x10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4000.00, PorcentajeAumento: 0 },
@@ -371,17 +416,48 @@
             { Producto: 'VENDA NRO 20 3 METROS', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 1700.00, PorcentajeAumento: 0 }
         ];
 
-        // Aquí iría el resto de tu código JavaScript para interactuar con la tabla,
-        // la barra de búsqueda y la calculadora, por ejemplo:
+        let products = []; // Este array será el que usaremos y se cargará desde localStorage
 
+        // Referencias a elementos del DOM (sin cambios)
         const productTableBody = document.getElementById('product-table-body');
         const searchBar = document.getElementById('search-bar');
         const toggleCalculadoraBtn = document.getElementById('toggle-calculadora');
         const calculadoraContainer = document.getElementById('calculadora-container');
 
+        // Referencias para la calculadora de operaciones básicas (sin cambios)
+        const calcInput = document.getElementById('calc-input');
+        const calcResult = document.getElementById('calc-result');
+        let currentExpression = '';
+
+        // Referencias para el aumento de precios (sin cambios)
+        const increasePercentageInput = document.getElementById('increase-percentage-input');
+        const applyIncreaseBtn = document.getElementById('apply-increase-btn');
+        const resetPricesBtn = document.getElementById('reset-prices-btn');
+
+        // --- FUNCIONES PARA PERSISTIR Y CARGAR DATOS ---
+
+        // Función para guardar el array 'products' en localStorage
+        function saveProducts() {
+            localStorage.setItem('farmaciaPintarProducts', JSON.stringify(products));
+        }
+
+        // Función para cargar el array 'products' desde localStorage
+        function loadProducts() {
+            const storedProducts = localStorage.getItem('farmaciaPintarProducts');
+            if (storedProducts) {
+                // Si hay productos guardados, cárgalos
+                products = JSON.parse(storedProducts);
+            } else {
+                // Si no hay nada guardado, usa los productos por defecto
+                products = defaultProducts.map(product => ({ ...product })); // Clonar para no modificar el default
+            }
+        }
+
+        // --- FUNCIONES EXISTENTES (sin cambios lógicos importantes, solo se añaden llamadas a saveProducts) ---
+
         // Función para renderizar los productos en la tabla
         function renderProducts(filterText = '') {
-            productTableBody.innerHTML = ''; // Limpiar la tabla
+            productTableBody.innerHTML = '';
             const filteredProducts = products.filter(product =>
                 product.Producto.toLowerCase().includes(filterText.toLowerCase())
             );
@@ -391,13 +467,18 @@
                 row.insertCell(0).textContent = product.Producto;
                 row.insertCell(1).textContent = product.Cantidad === 0 ? 'A determinar' : product.Cantidad;
                 row.insertCell(2).textContent = product.Oferta === '0' ? 'No' : (product.Oferta === 'D' ? 'Sí (Descuento)' : product.Oferta);
-                row.insertCell(3).textContent = product.PrecioLista === 0.00 ? 'A determinar' : `$${product.PrecioLista.toFixed(2)}`;
-                
+
+                let precioActual = product.PrecioLista;
+                if (product.PorcentajeAumento > 0) {
+                    precioActual = product.PrecioLista * (1 + product.PorcentajeAumento / 100);
+                }
+                row.insertCell(3).textContent = precioActual === 0.00 ? 'A determinar' : `$${precioActual.toFixed(2)}`;
+
                 const actionCell = row.insertCell(4);
                 const addButton = document.createElement('button');
                 addButton.textContent = 'Agregar a Ticket';
                 addButton.className = 'btn';
-                addButton.onclick = () => addToTicket(product); // Llama a una función para agregar al ticket
+                addButton.onclick = () => addToTicket(product);
                 actionCell.appendChild(addButton);
             });
         }
@@ -409,19 +490,81 @@
 
         // Event listener para el botón de la calculadora
         toggleCalculadoraBtn.addEventListener('click', () => {
-            calculadoraContainer.style.display = calculadoraContainer.style.display === 'none' ? 'block' : 'none';
+            if (calculadoraContainer.style.display === 'none' || calculadoraContainer.style.display === '') {
+                calculadoraContainer.style.display = 'block';
+            } else {
+                calculadoraContainer.style.display = 'none';
+            }
         });
 
-        // Simulación de función para agregar al ticket (necesitarías implementarla)
+        // Simulación de función para agregar al ticket
         function addToTicket(product) {
             alert(`Producto '${product.Producto}' agregado al ticket.`);
-            // Aquí iría la lógica para agregar el producto a un array de "ticket items"
-            // y luego renderizar el ticket en #ticket-print-area
         }
 
-        // Renderizar los productos al cargar la página
+        // --- FUNCIONES DE LA CALCULADORA BÁSICA (sin cambios) ---
+        function addToCalc(value) {
+            if (calcInput.value === '0' && !isNaN(value) && value !== '.') {
+                currentExpression = value;
+            } else {
+                currentExpression += value;
+            }
+            calcInput.value = currentExpression;
+        }
+
+        function clearCalc() {
+            currentExpression = '';
+            calcInput.value = '0';
+            calcResult.textContent = '0';
+        }
+
+        function calculate() {
+            try {
+                const result = eval(currentExpression);
+                calcResult.textContent = result.toFixed(2);
+                currentExpression = result.toString();
+            } catch (error) {
+                calcResult.textContent = 'Error';
+                currentExpression = '';
+            }
+        }
+
+        // --- FUNCIONES PARA EL AUMENTO DE PRECIOS (con adición de saveProducts) ---
+
+        applyIncreaseBtn.addEventListener('click', () => {
+            const percentage = parseFloat(increasePercentageInput.value);
+            if (isNaN(percentage) || percentage < 0) {
+                alert('Por favor, ingresa un porcentaje válido (un número positivo).');
+                return;
+            }
+
+            if (confirm(`¿Estás seguro de que quieres aumentar TODOS los precios en un ${percentage}%?`)) {
+                products.forEach(product => {
+                    if (product.PrecioLista > 0) {
+                        product.PorcentajeAumento = percentage;
+                    }
+                });
+                saveProducts(); // Guarda los cambios en localStorage
+                renderProducts(); // Vuelve a renderizar la tabla
+                alert(`Precios aumentados en un ${percentage}%.`);
+            }
+        });
+
+        resetPricesBtn.addEventListener('click', () => {
+            if (confirm('¿Estás seguro de que quieres reiniciar TODOS los precios a sus valores originales (quitar aumentos)?')) {
+                // Reiniciar a los valores originales de defaultProducts
+                products = defaultProducts.map(product => ({ ...product })); // Crear una copia limpia
+                saveProducts(); // Guarda los cambios en localStorage
+                renderProducts(); // Vuelve a renderizar la tabla
+                alert('Precios reiniciados a sus valores originales.');
+            }
+        });
+
+        // Renderizar los productos al cargar la página (MODIFICADO)
         document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
+            loadProducts(); // Cargar los productos al inicio
+            renderProducts(); // Renderizar la tabla con los productos cargados
+            calcInput.value = '0';
         });
 
     </script>
