@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -42,7 +41,7 @@
             cursor: pointer;
             margin: 2px;
             white-space: nowrap;
-            font-size: 14px; /* Ajuste para que los botones se vean bien */
+            font-size: 14px;
         }
         .btn:hover {
             background-color: #4CBB17;
@@ -62,15 +61,15 @@
 
         .container {
             display: flex;
-            flex: 1; /* Permite que el contenedor principal crezca */
+            flex: 1;
             justify-content: space-between;
             padding: 20px;
             gap: 20px;
-            flex-wrap: wrap; /* Permite que las columnas se envuelvan */
+            flex-wrap: wrap;
         }
         #products-section {
             flex: 2;
-            min-width: 650px; /* Ancho mínimo para la tabla */
+            min-width: 650px;
             background-color: #fff;
             padding: 15px;
             border-radius: 8px;
@@ -78,16 +77,23 @@
         }
         #side-panel {
             flex: 1;
-            min-width: 350px; /* Ancho mínimo para el panel lateral */
+            min-width: 350px;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
-        #quick-price-check-section, #order-section {
+        #quick-price-check-section {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba=0,0,0,0.1);
+        }
+        #order-section {
             background-color: #fff;
             padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: none; /* Ocultar por defecto, visible solo en modo dev */
         }
 
         table {
@@ -99,12 +105,12 @@
             padding: 8px;
             border: 1px solid #ddd;
             text-align: left;
-            font-size: 0.9em; /* Ajuste para que quepan más columnas */
+            font-size: 0.9em;
         }
         th {
             background-color: #4CAF50;
             color: white;
-            white-space: nowrap; /* Evita que los encabezados se rompan */
+            white-space: nowrap;
         }
         tr:nth-child(even) {
             background-color: #f2f2f2;
@@ -126,15 +132,15 @@
 
         /* Login Modal */
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
+            display: none;
+            position: fixed;
+            z-index: 1000; /* Higher z-index to be on top */
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
             justify-content: center;
             align-items: center;
         }
@@ -167,12 +173,12 @@
             float: right;
             font-size: 28px;
             font-weight: bold;
+            cursor: pointer;
         }
         .close-button:hover,
         .close-button:focus {
             color: black;
             text-decoration: none;
-            cursor: pointer;
         }
 
         /* Developer Mode specific elements */
@@ -182,26 +188,46 @@
         body.dev-mode .dev-mode-only {
             display: inline-block; /* Show when dev mode is active */
         }
+        /* Make dev-mode-block display block when in dev mode */
         body.dev-mode .dev-mode-block {
-            display: block; /* Show as block when dev mode is active */
+            display: block;
         }
+
+        /* Ensure #order-section is block only in dev mode */
+        body.dev-mode #order-section {
+            display: block;
+        }
+
+        /* PERMANENTLY HIDE THE GLOBAL INCREASE/RESET BUTTONS */
+        #global-percentage-input,
+        #increase-price-btn,
+        #reset-prices-btn {
+            display: none !important;
+        }
+
+
         #order-tabs {
             margin-bottom: 10px;
             display: flex;
-            justify-content: center; /* Centrar los botones */
+            justify-content: center;
             flex-wrap: wrap;
             gap: 5px;
         }
         #order-tabs button {
-            flex: 1; /* Permite que los botones ocupen el espacio disponible */
-            min-width: 90px; /* Ancho mínimo para evitar que sean demasiado pequeños */
+            flex: 1;
+            min-width: 90px;
+            background-color: #5cb85c; /* Default tab background */
+        }
+        #order-tabs button.active {
+            background-color: #338310; /* Active tab background */
+            font-weight: bold;
         }
 
         /* Order List (Carrito) */
         #current-order-list {
             list-style: none;
             padding: 0;
-            max-height: 250px; /* Scroll si hay muchos items */
+            max-height: 250px;
             overflow-y: auto;
             border: 1px solid #eee;
             border-radius: 5px;
@@ -212,8 +238,8 @@
             border-bottom: 1px dashed #eee;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start; /* Alinea al inicio si el texto es largo */
-            flex-wrap: wrap; /* Permite que el contenido se envuelva */
+            align-items: flex-start;
+            flex-wrap: wrap;
             gap: 5px;
             font-size: 0.9em;
         }
@@ -221,8 +247,8 @@
             border-bottom: none;
         }
         .item-info {
-            flex: 1; /* Ocupa el espacio restante */
-            min-width: 150px; /* Ancho mínimo para la información del ítem */
+            flex: 1;
+            min-width: 150px;
         }
         .item-price {
             font-weight: bold;
@@ -303,14 +329,14 @@
                 display: block !important;
                 width: 100%;
                 margin: 0;
-                padding: 10mm; /* Márgenes para impresión */
+                padding: 10mm;
                 box-sizing: border-box;
-                font-family: monospace; /* Fuente de ticket */
-                font-size: 14pt; /* Letra grande para ticket */
+                font-family: monospace;
+                font-size: 14pt;
             }
             .print-container h1 {
                 text-align: center;
-                font-size: 1.5em; /* Título un poco más grande */
+                font-size: 1.5em;
                 margin-bottom: 20px;
             }
             .print-container ul {
@@ -326,7 +352,7 @@
                 line-height: 1.4;
             }
             .print-container .ticket-item-name {
-                flex-basis: 70%; /* Ocupa la mayor parte del espacio */
+                flex-basis: 70%;
                 font-weight: bold;
             }
             .print-container .ticket-item-qty {
@@ -334,11 +360,14 @@
                 text-align: right;
             }
             .print-container .ticket-item-prices {
-                width: 100%; /* Ocupa toda la línea para los precios */
+                width: 100%;
                 display: flex;
                 justify-content: space-between;
-                font-size: 0.9em; /* Precios ligeramente más pequeños que el nombre */
+                font-size: 0.9em;
                 margin-top: 2px;
+            }
+            .print-container .ticket-item-prices.total {
+                justify-content: flex-end;
             }
             .print-container .ticket-total {
                 border-top: 2px dashed black;
@@ -377,7 +406,7 @@
     <div class="container">
         <div id="products-section">
             <h2>Lista de Productos</h2>
-            <div style="text-align: right; margin-bottom: 10px;" class="dev-mode-block">
+            <div style="text-align: right; margin-bottom: 10px;">
                 <input type="number" id="global-percentage-input" value="0" min="0" max="100" style="width: 60px; padding: 5px;">
                 <button id="increase-price-btn" class="btn">Aplicar Aumento a Todos</button>
                 <button id="reset-prices-btn" class="btn btn-red">Reiniciar Precios</button>
@@ -390,7 +419,10 @@
                         <th>CANTIDAD</th>
                         <th>UNIDAD</th>
                         <th>OFERTA</th>
-                        <th>PRECIO</th> <th>AUMENTO (%)</th> <th>TOTAL</th> </tr>
+                        <th>PRECIO</th>
+                        <th>AUMENTO (%)</th>
+                        <th>TOTAL</th>
+                    </tr>
                 </thead>
                 <tbody>
                     </tbody>
@@ -408,7 +440,7 @@
             <div id="order-section">
                 <h2>Pedido Actual</h2>
                 <div id="order-tabs" class="dev-mode-only">
-                    <button id="tab-genericos" class="btn">GENÉRICOS</button>
+                    <button id="tab-genericos" class="btn active">GENÉRICOS</button>
                     <button id="tab-preparados" class="btn">PREPARADOS</button>
                     <button id="tab-perfumeria" class="btn">PERFUMERÍA</button>
                 </div>
@@ -418,7 +450,7 @@
                 <div id="order-actions">
                     <button id="clear-current-order-btn" class="btn btn-red">Limpiar Pedido</button>
                     <button id="print-ticket-btn" class="btn">Imprimir Ticket</button>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -426,8 +458,6 @@
     <div class="print-container" style="display:none;"></div>
 
     <script>
-        // Datos de productos extraídos del PDF y cargados directamente
-        // Se añade un campo 'codigo' con un valor autogenerado para cada producto
         const defaultProducts = [
             { id: 1, Producto: 'AC FOLICO 1x10', Cantidad: 10, Unidad: 'comprimidos', Oferta: 'D', PrecioLista: 2500.00, PorcentajeAumento: 0 },
             { id: 2, Producto: 'AC FOLICO 5 x10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4000.00, PorcentajeAumento: 0 },
@@ -569,16 +599,14 @@
             { id: 138, Producto: 'VENDA NRO 5 3 METROS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 400.00, PorcentajeAumento: 0 }
         ];
 
-        let products = []; // Productos actualmente en la tabla (incluyendo cambios de aumento)
-        let is_dev_mode = false; // Estado para el modo desarrollador
+        let products = [];
+        let is_dev_mode = false;
 
-        // Arrays para las 3 listas de pedidos
         let genericOrder = [];
         let preparedOrder = [];
         let perfumeryOrder = [];
-        let currentActiveOrder = 'generic'; // Define qué lista de pedidos se está viendo/editando
+        let currentActiveOrder = 'generic';
 
-        // Lista para la "Calculadora de Producto" / "Cálculo Rápido"
         let quickCheckItems = [];
 
         // --- Elementos del DOM ---
@@ -590,13 +618,15 @@
 
         const productTableBody = document.querySelector('#product-table tbody');
         const searchBar = document.getElementById('search-bar');
-        const globalPercentageInput = document.getElementById('global-percentage-input');
-        const increasePriceBtn = document.getElementById('increase-price-btn');
-        const resetPricesBtn = document.getElementById('reset-prices-btn');
+        // Eliminados de la referencia ya que no serán utilizados:
+        // const globalPercentageInput = document.getElementById('global-percentage-input');
+        // const increasePriceBtn = document.getElementById('increase-price-btn');
+        // const resetPricesBtn = document.getElementById('reset-prices-btn');
 
         const quickPriceCheckList = document.getElementById('quick-price-check-list');
         const quickCheckTotalDisplay = document.getElementById('quick-check-total');
 
+        const orderSection = document.getElementById('order-section');
         const orderTabsContainer = document.getElementById('order-tabs');
         const tabGenericos = document.getElementById('tab-genericos');
         const tabPreparados = document.getElementById('tab-preparados');
@@ -612,7 +642,7 @@
         }
 
         function calculateFinalPrice(priceLista, porcentajeAumento) {
-            return priceLista * (1 + (porcentajeAumento / 100));
+            return priceLista * (1 + (porcentajeAcentaje / 100));
         }
 
         // --- Funciones de Productos y Renderizado de Tabla ---
@@ -625,13 +655,12 @@
             if (storedProducts) {
                 products = JSON.parse(storedProducts);
             } else {
-                // Si no hay productos guardados, usamos los predeterminados como base
                 products = JSON.parse(JSON.stringify(defaultProducts));
                 saveProducts();
             }
         }
 
-        let currentExpandedRow = null; // Para manejar la fila expandida con botones
+        let currentExpandedRow = null;
 
         function renderProducts(filter = '') {
             productTableBody.innerHTML = '';
@@ -641,12 +670,12 @@
 
             filteredProducts.forEach(product => {
                 const row = productTableBody.insertRow();
-                row.classList.add('product-row'); // Clase para identificar filas de producto
-                row.dataset.productId = product.id; // Guarda el ID para fácil acceso
+                row.classList.add('product-row');
+                row.dataset.productId = product.id;
 
                 const precioFinal = calculateFinalPrice(product.PrecioLista, product.PorcentajeAumento);
 
-                row.insertCell().textContent = product.id; // Código (autogenerado por ahora)
+                row.insertCell().textContent = product.id;
                 row.insertCell().textContent = product.Producto;
                 row.insertCell().textContent = product.Cantidad;
                 row.insertCell().textContent = product.Unidad;
@@ -656,32 +685,25 @@
                 row.insertCell().textContent = formatCurrency(precioFinal);
             });
 
-            // Añadir listeners para expandir/colapsar botones
             productTableBody.querySelectorAll('.product-row').forEach(row => {
                 row.addEventListener('click', (event) => {
-                    // Si el click fue en un botón, no hagas nada (para no expandir/colapsar)
-                    if (event.target.tagName === 'BUTTON') {
+                    if (event.target.tagName === 'BUTTON' || event.target.closest('.action-buttons-row')) {
                         return;
                     }
                     toggleProductActionButtons(row);
                 });
             });
-
-            updateDevModeVisibility(); // Actualizar visibilidad de elementos de desarrollador
         }
 
         function toggleProductActionButtons(row) {
-            // Si ya hay una fila expandida y es diferente a la actual, colapsa la anterior
             if (currentExpandedRow && currentExpandedRow !== row) {
                 removeActionButtons(currentExpandedRow);
             }
 
-            // Si la fila actual ya tiene botones, colápsala
             if (row.nextElementSibling && row.nextElementSibling.classList.contains('action-buttons-row')) {
                 removeActionButtons(row);
                 currentExpandedRow = null;
             } else {
-                // Expande la fila actual
                 displayActionButtons(row);
                 currentExpandedRow = row;
             }
@@ -691,17 +713,24 @@
             const actionRow = productTableBody.insertRow(row.rowIndex + 1);
             actionRow.classList.add('action-buttons-row');
             const cell = actionRow.insertCell(0);
-            cell.colSpan = 8; // Ocupa todas las columnas
+            cell.colSpan = 8;
 
             const productId = parseInt(row.dataset.productId);
             const product = products.find(p => p.id === productId);
 
             cell.innerHTML = `
-                <button class="btn btn-blue add-to-order-btn" data-product-id="${product.id}" data-category="generic">Añadir a GENÉRICOS</button>
-                <button class="btn btn-blue add-to-order-btn" data-product-id="${product.id}" data-category="prepared">Añadir a PREPARADOS</button>
-                <button class="btn btn-blue add-to-order-btn" data-product-id="${product.id}" data-category="perfumery">Añadir a PERFUMERÍA</button>
+                <button class="btn btn-blue add-to-order-btn dev-mode-only" data-product-id="${product.id}" data-category="generic">Añadir a GENÉRICOS</button>
+                <button class="btn btn-blue add-to-order-btn dev-mode-only" data-product-id="${product.id}" data-category="prepared">Añadir a PREPARADOS</button>
+                <button class="btn btn-blue add-to-order-btn dev-mode-only" data-product-id="${product.id}" data-category="perfumery">Añadir a PERFUMERÍA</button>
                 <button class="btn add-to-quick-check-btn" data-product-id="${product.id}">Añadir a Cálculo Rápido</button>
             `;
+
+            // Control de visibilidad para botones en modo desarrollador
+            if (is_dev_mode) {
+                actionRow.querySelectorAll('.dev-mode-only').forEach(el => el.style.display = 'inline-block');
+            } else {
+                actionRow.querySelectorAll('.dev-mode-only').forEach(el => el.style.display = 'none');
+            }
 
             actionRow.querySelectorAll('.add-to-order-btn').forEach(button => {
                 button.addEventListener('click', (event) => {
@@ -711,7 +740,7 @@
                     if (selectedProduct) {
                         addToOrder(selectedProduct, category);
                     }
-                    removeActionButtons(row); // Colapsa los botones después de añadir
+                    removeActionButtons(row);
                     currentExpandedRow = null;
                 });
             });
@@ -722,7 +751,7 @@
                 if (selectedProduct) {
                     addToQuickCheck(selectedProduct);
                 }
-                removeActionButtons(row); // Colapsa los botones
+                removeActionButtons(row);
                 currentExpandedRow = null;
             });
         }
@@ -751,11 +780,18 @@
             if (is_dev_mode) {
                 document.body.classList.add('dev-mode');
                 devModeToggleBtn.textContent = 'Salir de Desarrollador';
+                orderSection.style.display = 'block';
+                tabGenericos.classList.add('active');
+                currentActiveOrder = 'generic';
             } else {
                 document.body.classList.remove('dev-mode');
                 devModeToggleBtn.textContent = 'Modo Desarrollador';
+                orderSection.style.display = 'none';
+                document.querySelectorAll('#order-tabs button').forEach(btn => btn.classList.remove('active'));
             }
-            renderActiveOrder(); // Re-renderiza el pedido para actualizar visibilidad de botones
+            renderActiveOrder();
+            // No need to re-render products to update global increase/reset buttons
+            // as they are now permanently hidden by CSS.
         }
 
         loginForm.addEventListener('submit', (event) => {
@@ -768,7 +804,7 @@
                 hideLoginModal();
                 updateDevModeVisibility();
                 alert('Modo Desarrollador ACTIVADO. ¡Bienvenido!');
-                renderProducts(searchBar.value); // Re-renderizar para mostrar elementos ocultos
+                renderProducts(searchBar.value); // Re-renderizar para mostrar/ocultar botones de acción en filas
             } else {
                 loginErrorMsg.textContent = 'Email o contraseña incorrectos.';
             }
@@ -792,7 +828,6 @@
         });
 
         // --- Funciones de Listas de Pedidos (Carrito) ---
-
         function getOrderList(category) {
             switch (category) {
                 case 'generic': return genericOrder;
@@ -812,7 +847,13 @@
                 existingItem.quantity++;
             } else {
                 targetOrder.push({
-                    ...product,
+                    id: product.id,
+                    Producto: product.Producto,
+                    CantidadOriginal: product.Cantidad,
+                    UnidadOriginal: product.Unidad,
+                    Oferta: product.Oferta,
+                    PrecioLista: product.PrecioLista,
+                    PorcentajeAumento: product.PorcentajeAumento,
                     precioFinal: precioFinal,
                     quantity: 1
                 });
@@ -830,13 +871,13 @@
                 currentOrderList.innerHTML = `<li>No hay productos en el pedido de ${currentActiveOrder.toUpperCase()}.</li>`;
             } else {
                 activeOrderList.forEach((item, index) => {
-                    const listItem = document.createElement('li');
                     const itemTotal = item.precioFinal * item.quantity;
                     total += itemTotal;
 
+                    const listItem = document.createElement('li');
                     listItem.innerHTML = `
                         <span class="item-info">
-                            ${item.Producto} (${item.Unidad.includes('x') ? item.Unidad : (item.quantity + ' ' + item.Unidad)})
+                            ${item.Producto} (${item.quantity} x ${item.UnidadOriginal.includes('x') ? item.UnidadOriginal : (item.CantidadOriginal + ' ' + item.UnidadOriginal)})
                         </span>
                         <span class="item-price">
                             ${formatCurrency(itemTotal)}
@@ -871,7 +912,7 @@
         function clearCurrentOrder() {
             if (confirm(`¿Estás seguro de que quieres limpiar todo el pedido de ${currentActiveOrder.toUpperCase()}?`)) {
                 const targetOrder = getOrderList(currentActiveOrder);
-                targetOrder.length = 0; // Vaciar el array
+                targetOrder.length = 0;
                 renderActiveOrder();
                 alert(`Pedido de ${currentActiveOrder.toUpperCase()} limpiado.`);
             }
@@ -885,7 +926,7 @@
                 return;
             }
 
-            let ticketContent = `<h1>${currentActiveOrder.toUpperCase()}</h1>`;
+            let ticketContent = `<h1>PEDIDO DE ${currentActiveOrder.toUpperCase()}</h1>`;
             ticketContent += '<ul>';
             let totalGeneral = 0;
 
@@ -896,20 +937,20 @@
                 ticketContent += `
                     <li>
                         <span class="ticket-item-name">${item.Producto}</span>
-                        <span class="ticket-item-qty">Cant: ${item.quantity}</span>
+                        <span class="ticket-item-qty">Cantidad: ${item.quantity} (${item.CantidadOriginal} ${item.UnidadOriginal})</span>
                         <span class="ticket-item-prices">
-                            <span>Precio base: ${formatCurrency(item.PrecioLista)}</span>
+                            <span>P. Base: ${formatCurrency(item.PrecioLista)}</span>
                             <span>Aumento: ${item.PorcentajeAumento}%</span>
-                            <span>Precio final: ${formatCurrency(item.precioFinal)}</span>
+                            <span>P. Final/U: ${formatCurrency(item.precioFinal)}</span>
                         </span>
-                        <span class="ticket-item-prices">
+                        <span class="ticket-item-prices total">
                              Total línea: ${formatCurrency(itemTotal)}
                         </span>
                     </li>
                 `;
             });
             ticketContent += '</ul>';
-            ticketContent += `<div class="ticket-total">TOTAL: ${formatCurrency(totalGeneral)}</div>`;
+            ticketContent += `<div class="ticket-total">TOTAL FINAL: ${formatCurrency(totalGeneral)}</div>`;
 
             const printWindow = window.open('', '_blank');
             printWindow.document.write('<html><head><title>Ticket de Pedido</title>');
@@ -922,8 +963,9 @@
                 .ticket-item-name { display: block; font-weight: bold; font-size: 1.1em; margin-bottom: 5px; }
                 .ticket-item-qty { display: block; margin-bottom: 5px; }
                 .ticket-item-prices { display: flex; justify-content: space-between; flex-wrap: wrap; font-size: 0.9em; }
-                .ticket-item-prices span { flex: 1 1 45%; margin-right: 10px; }
-                .ticket-item-prices span:last-child { margin-right: 0; text-align: right; }
+                .ticket-item-prices span { flex: 1 1 auto; margin-right: 10px; }
+                .ticket-item-prices.total { justify-content: flex-end; }
+                .ticket-item-prices.total span { flex: none; } /* Override flex for total line */
                 .ticket-total { border-top: 2px dashed black; padding-top: 10px; margin-top: 20px; text-align: right; font-size: 1.5em; font-weight: bold; }
             `);
             printWindow.document.write('</style>');
@@ -934,16 +976,14 @@
             printWindow.print();
         }
 
-
         // --- Funciones de Cálculo Rápido de Precios ---
-
         function addToQuickCheck(product) {
-            const existingItem = quickCheckItems.find(item => item.id === product.id);
             const precioFinal = calculateFinalPrice(product.PrecioLista, product.PorcentajeAumento);
+            const existingItemIndex = quickCheckItems.findIndex(item => item.id === product.id);
 
-            if (existingItem) {
-                existingItem.quantity++;
-                existingItem.totalPrice = existingItem.quantity * precioFinal;
+            if (existingItemIndex !== -1) {
+                quickCheckItems[existingItemIndex].quantity++;
+                quickCheckItems[existingItemIndex].totalPrice = quickCheckItems[existingItemIndex].quantity * precioFinal;
             } else {
                 quickCheckItems.push({
                     id: product.id,
@@ -968,7 +1008,7 @@
                     totalQuickCheck += item.totalPrice;
                     const listItem = document.createElement('li');
                     listItem.innerHTML = `
-                        <span>${item.name} (${item.unitDetails})</span>
+                        <span>${item.name}</span>
                         <span>Cant: ${item.quantity}</span>
                         <span>Precio/U: ${formatCurrency(item.pricePerUnit)}</span>
                         <span>Total: ${formatCurrency(item.totalPrice)}
@@ -994,50 +1034,14 @@
             });
         }
 
-
         // --- Event Listeners Globales ---
         searchBar.addEventListener('keyup', (event) => {
             renderProducts(event.target.value);
         });
 
-        increasePriceBtn.addEventListener('click', () => {
-            if (!is_dev_mode) {
-                alert('Necesitas estar en Modo Desarrollador para aplicar aumentos de precios.');
-                return;
-            }
-            const percentage = parseFloat(globalPercentageInput.value);
-            if (isNaN(percentage) || percentage < 0 || percentage > 100) {
-                alert('Por favor, ingresa un porcentaje válido entre 0 y 100.');
-                return;
-            }
+        // Los listeners para increasePriceBtn y resetPricesBtn han sido eliminados
+        // ya que los botones están ocultos permanentemente.
 
-            if (confirm(`¿Estás seguro de que quieres aumentar TODOS los precios en un ${percentage}%?`)) {
-                products.forEach(product => {
-                    if (product.PrecioLista > 0) {
-                        product.PorcentajeAumento = percentage;
-                    }
-                });
-                saveProducts();
-                renderProducts();
-                alert(`Precios aumentados en un ${percentage}%.`);
-            }
-        });
-
-        resetPricesBtn.addEventListener('click', () => {
-            if (!is_dev_mode) {
-                alert('Necesitas estar en Modo Desarrollador para reiniciar precios.');
-                return;
-            }
-            if (confirm('¿Estás seguro de que quieres reiniciar TODOS los precios a sus valores originales (quitar aumentos)?')) {
-                // Restaurar desde la copia limpia de defaultProducts, asignando nuevos IDs si se requiere.
-                products = defaultProducts.map(p => ({ ...p })); // Copia profunda
-                saveProducts();
-                renderProducts();
-                alert('Precios reiniciados a sus valores originales.');
-            }
-        });
-
-        // Tab selection for orders
         orderTabsContainer.addEventListener('click', (event) => {
             if (event.target.tagName === 'BUTTON') {
                 document.querySelectorAll('#order-tabs button').forEach(btn => btn.classList.remove('active'));
@@ -1050,21 +1054,14 @@
         clearCurrentOrderBtn.addEventListener('click', clearCurrentOrder);
         printTicketBtn.addEventListener('click', printTicket);
 
-
         // --- Inicialización al cargar la página ---
         document.addEventListener('DOMContentLoaded', () => {
             loadProducts();
             renderProducts();
-            renderActiveOrder(); // Renderiza la lista de pedidos activa por defecto (genéricos)
-            renderQuickCheck(); // Inicializa la vista de cálculo rápido
-
-            // Asegurar que la pestaña de Genéricos esté activa por defecto en modo desarrollador
-            if (is_dev_mode) {
-                tabGenericos.classList.add('active');
-            }
+            updateDevModeVisibility(); // Set initial visibility based on is_dev_mode (which is false by default)
+            renderQuickCheck(); // Render the quick check section initially
         });
 
     </script>
 </body>
 </html>
-```
