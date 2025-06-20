@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,6 +11,9 @@
             margin: 0;
             padding: 0;
             background-color: #D8FFC7;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         #header {
             background-color: #4CBB17;
@@ -19,15 +23,15 @@
             align-items: center;
             justify-content: space-between;
             font-size: 18px;
-            flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+            flex-wrap: wrap;
         }
         #search-bar {
-            width: 300px;
+            width: 250px;
             padding: 5px;
             font-size: 14px;
             border: 1px solid #49BB17;
             border-radius: 3px;
-            margin-right: 10px; /* Espacio entre la barra de búsqueda y el botón */
+            margin-right: 10px;
         }
         .btn {
             padding: 5px 10px;
@@ -37,11 +41,55 @@
             border-radius: 3px;
             cursor: pointer;
             margin: 2px;
-            white-space: nowrap; /* Evita que los botones se rompan en varias líneas */
+            white-space: nowrap;
+            font-size: 14px; /* Ajuste para que los botones se vean bien */
         }
         .btn:hover {
             background-color: #4CBB17;
         }
+        .btn-red {
+            background-color: #f44336;
+        }
+        .btn-red:hover {
+            background-color: #d32f2f;
+        }
+        .btn-blue {
+            background-color: #2196F3;
+        }
+        .btn-blue:hover {
+            background-color: #1976D2;
+        }
+
+        .container {
+            display: flex;
+            flex: 1; /* Permite que el contenedor principal crezca */
+            justify-content: space-between;
+            padding: 20px;
+            gap: 20px;
+            flex-wrap: wrap; /* Permite que las columnas se envuelvan */
+        }
+        #products-section {
+            flex: 2;
+            min-width: 650px; /* Ancho mínimo para la tabla */
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        #side-panel {
+            flex: 1;
+            min-width: 350px; /* Ancho mínimo para el panel lateral */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        #quick-price-check-section, #order-section {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
@@ -51,112 +99,134 @@
             padding: 8px;
             border: 1px solid #ddd;
             text-align: left;
+            font-size: 0.9em; /* Ajuste para que quepan más columnas */
         }
         th {
             background-color: #4CAF50;
             color: white;
+            white-space: nowrap; /* Evita que los encabezados se rompan */
         }
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
-        .container {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            gap: 20px; /* Espacio entre las columnas */
-            flex-wrap: wrap; /* Permite que las columnas se envuelvan */
-        }
-        #products-section {
-            flex: 2; /* Ocupa más espacio */
-            min-width: 600px; /* Ancho mínimo para que no se vea demasiado estrecho */
-        }
-        #order-section, #calculator-section {
-            flex: 1; /* Ocupa menos espacio */
-            min-width: 300px; /* Ancho mínimo */
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-bottom: 20px; /* Espacio si se apilan en móvil */
-        }
-
-        #calculator-section {
-            margin-top: 20px; /* Espacio si se apila debajo de la tabla */
-        }
-
-        /* Estilos para ocultar/mostrar columnas en modo admin */
-        .admin-only {
-            display: none; /* Por defecto oculto */
-        }
-        body.admin-mode .admin-only {
-            display: table-cell; /* Mostrar en modo admin para celdas */
-        }
-        body.admin-mode .admin-only-th {
-            display: table-cell; /* Mostrar en modo admin para encabezados */
-        }
-
-        /* Estilos de la calculadora */
-        #calculator-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-            margin-top: 10px;
-        }
-        #calculator-output {
-            grid-column: 1 / -1; /* Ocupa todas las columnas */
-            background-color: #eee;
-            padding: 10px;
-            text-align: right;
-            font-size: 1.5em;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        .calc-button {
-            padding: 15px;
-            font-size: 1.2em;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
+        tr.product-row {
             cursor: pointer;
-            transition: background-color 0.2s;
         }
-        .calc-button:hover {
+        tr.product-row:hover {
             background-color: #e0e0e0;
         }
-        .operator {
-            background-color: #ff9800;
-            color: white;
+        .action-buttons-row td {
+            padding: 5px 8px;
+            text-align: center;
+            background-color: #f9f9f9;
         }
-        .operator:hover {
-            background-color: #e68a00;
-        }
-        .equal {
-            background-color: #4CAF50;
-            color: white;
-        }
-        .equal:hover {
-            background-color: #45a049;
+        .action-buttons-row button {
+            margin: 3px;
         }
 
-        /* Estilos del carrito de pedido */
-        #order-list {
+        /* Login Modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        .modal-content input[type="email"],
+        .modal-content input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .modal-content button {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Developer Mode specific elements */
+        .dev-mode-only {
+            display: none; /* Hidden by default */
+        }
+        body.dev-mode .dev-mode-only {
+            display: inline-block; /* Show when dev mode is active */
+        }
+        body.dev-mode .dev-mode-block {
+            display: block; /* Show as block when dev mode is active */
+        }
+        #order-tabs {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center; /* Centrar los botones */
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        #order-tabs button {
+            flex: 1; /* Permite que los botones ocupen el espacio disponible */
+            min-width: 90px; /* Ancho mínimo para evitar que sean demasiado pequeños */
+        }
+
+        /* Order List (Carrito) */
+        #current-order-list {
             list-style: none;
             padding: 0;
-            max-height: 300px; /* Scroll si hay muchos items */
+            max-height: 250px; /* Scroll si hay muchos items */
             overflow-y: auto;
             border: 1px solid #eee;
             border-radius: 5px;
             margin-bottom: 10px;
         }
-        #order-list li {
+        #current-order-list li {
             padding: 8px;
             border-bottom: 1px dashed #eee;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start; /* Alinea al inicio si el texto es largo */
+            flex-wrap: wrap; /* Permite que el contenido se envuelva */
+            gap: 5px;
+            font-size: 0.9em;
         }
-        #order-list li:last-child {
+        #current-order-list li:last-child {
             border-bottom: none;
+        }
+        .item-info {
+            flex: 1; /* Ocupa el espacio restante */
+            min-width: 150px; /* Ancho mínimo para la información del ítem */
+        }
+        .item-price {
+            font-weight: bold;
+            white-space: nowrap;
         }
         .remove-item-btn {
             background-color: #f44336;
@@ -166,15 +236,17 @@
             cursor: pointer;
             padding: 3px 6px;
             font-size: 0.8em;
+            margin-left: 5px;
         }
         .remove-item-btn:hover {
             background-color: #d32f2f;
         }
-        #order-total {
+        #order-total-display {
             font-size: 1.2em;
             font-weight: bold;
             text-align: right;
             margin-top: 10px;
+            padding-right: 5px;
         }
         #order-actions {
             display: flex;
@@ -182,36 +254,143 @@
             gap: 5px;
             margin-top: 10px;
         }
+
+        /* Quick Price Check Display */
+        #quick-price-check-list {
+            list-style: none;
+            padding: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+        #quick-price-check-list li {
+            padding: 8px;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #quick-price-check-list li:last-child {
+            border-bottom: none;
+        }
+        .quick-check-remove {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            padding: 2px 5px;
+            font-size: 0.7em;
+            margin-left: 5px;
+        }
+        #quick-check-total {
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 10px;
+            padding-right: 5px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body > *:not(.print-container) {
+                display: none !important;
+            }
+            .print-container {
+                display: block !important;
+                width: 100%;
+                margin: 0;
+                padding: 10mm; /* Márgenes para impresión */
+                box-sizing: border-box;
+                font-family: monospace; /* Fuente de ticket */
+                font-size: 14pt; /* Letra grande para ticket */
+            }
+            .print-container h1 {
+                text-align: center;
+                font-size: 1.5em; /* Título un poco más grande */
+                margin-bottom: 20px;
+            }
+            .print-container ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .print-container li {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                margin-bottom: 10px;
+                line-height: 1.4;
+            }
+            .print-container .ticket-item-name {
+                flex-basis: 70%; /* Ocupa la mayor parte del espacio */
+                font-weight: bold;
+            }
+            .print-container .ticket-item-qty {
+                flex-basis: 25%;
+                text-align: right;
+            }
+            .print-container .ticket-item-prices {
+                width: 100%; /* Ocupa toda la línea para los precios */
+                display: flex;
+                justify-content: space-between;
+                font-size: 0.9em; /* Precios ligeramente más pequeños que el nombre */
+                margin-top: 2px;
+            }
+            .print-container .ticket-total {
+                border-top: 2px dashed black;
+                padding-top: 10px;
+                margin-top: 20px;
+                text-align: right;
+                font-size: 1.5em;
+                font-weight: bold;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Iniciar Sesión (Modo Desarrollador)</h2>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Contraseña" required>
+                <button type="submit" class="btn">Acceder</button>
+                <p id="login-error-msg" style="color: red; font-size: 0.9em; margin-top: 10px;"></p>
+            </form>
+        </div>
+    </div>
 
     <div id="header">
         Farmacia Pintar - Gestión de Productos
         <div>
             <input type="text" id="search-bar" placeholder="Buscar producto...">
-            <button id="admin-mode-toggle" class="btn">Modo Administrador</button>
+            <button id="dev-mode-toggle" class="btn btn-blue">Modo Desarrollador</button>
         </div>
     </div>
 
     <div class="container">
         <div id="products-section">
             <h2>Lista de Productos</h2>
-            <div style="text-align: right; margin-bottom: 10px;">
-                <input type="number" id="calc-input-percentage" value="0" min="0" max="100" style="width: 60px; padding: 5px;">
+            <div style="text-align: right; margin-bottom: 10px;" class="dev-mode-block">
+                <input type="number" id="global-percentage-input" value="0" min="0" max="100" style="width: 60px; padding: 5px;">
                 <button id="increase-price-btn" class="btn">Aplicar Aumento a Todos</button>
-                <button id="reset-prices-btn" class="btn">Reiniciar Precios</button>
+                <button id="reset-prices-btn" class="btn btn-red">Reiniciar Precios</button>
             </div>
             <table id="product-table">
                 <thead>
                     <tr>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Unidad</th>
-                        <th>Oferta</th>
-                        <th class="admin-only-th">Precio Lista</th> <th>Precio Final</th>
-                        <th>Acciones</th>
-                    </tr>
+                        <th>CÓDIGO</th>
+                        <th>PRODUCTO</th>
+                        <th>CANTIDAD</th>
+                        <th>UNIDAD</th>
+                        <th>OFERTA</th>
+                        <th>PRECIO</th> <th>AUMENTO (%)</th> <th>TOTAL</th> </tr>
                 </thead>
                 <tbody>
                     </tbody>
@@ -219,216 +398,224 @@
         </div>
 
         <div id="side-panel">
-            <div id="calculator-section">
-                <h2>Calculadora</h2>
-                <div id="calculator-output">0</div>
-                <div id="calculator-grid">
-                    <button class="calc-button">C</button>
-                    <button class="calc-button operator">/</button>
-                    <button class="calc-button operator">*</button>
-                    <button class="calc-button operator">-</button>
-                    <button class="calc-button">7</button>
-                    <button class="calc-button">8</button>
-                    <button class="calc-button">9</button>
-                    <button class="calc-button operator">+</button>
-                    <button class="calc-button">4</button>
-                    <button class="calc-button">5</button>
-                    <button class="calc-button">6</button>
-                    <button class="calc-button equal">=</button>
-                    <button class="calc-button">1</button>
-                    <button class="calc-button">2</button>
-                    <button class="calc-button">3</button>
-                    <button class="calc-button">0</button>
-                    <button class="calc-button">.</button>
-                </div>
+            <div id="quick-price-check-section">
+                <h2>Cálculo Rápido de Precios</h2>
+                <ul id="quick-price-check-list">
+                    </ul>
+                <div id="quick-check-total">Total: $0.00</div>
             </div>
 
             <div id="order-section">
                 <h2>Pedido Actual</h2>
-                <ul id="order-list">
-                    </ul>
-                <div id="order-total">Total: $0.00</div>
-                <div id="order-actions">
-                    <button id="clear-order-btn" class="btn">Limpiar Pedido</button>
-                    <button id="finalize-order-btn" class="btn">Finalizar Pedido</button>
+                <div id="order-tabs" class="dev-mode-only">
+                    <button id="tab-genericos" class="btn">GENÉRICOS</button>
+                    <button id="tab-preparados" class="btn">PREPARADOS</button>
+                    <button id="tab-perfumeria" class="btn">PERFUMERÍA</button>
                 </div>
+                <ul id="current-order-list">
+                    </ul>
+                <div id="order-total-display">Total Pedido: $0.00</div>
+                <div id="order-actions">
+                    <button id="clear-current-order-btn" class="btn btn-red">Limpiar Pedido</button>
+                    <button id="print-ticket-btn" class="btn">Imprimir Ticket</button>
+                    </div>
             </div>
         </div>
     </div>
 
+    <div class="print-container" style="display:none;"></div>
+
     <script>
-        // Datos de productos extraídos del PDF y cargados directamente en el JavaScript
-        // ESTOS SON TUS DATOS BASE. SIEMPRE QUE SE REINICIE, SE VOLVERÁ A ESTOS VALORES.
-        // Asegúrate de que los 'PrecioLista' y 'PorcentajeAumento' sean correctos.
+        // Datos de productos extraídos del PDF y cargados directamente
+        // Se añade un campo 'codigo' con un valor autogenerado para cada producto
         const defaultProducts = [
-            { Producto: 'AC FOLICO 1x10', Cantidad: 10, Unidad: 'comprimidos', Oferta: 'D', PrecioLista: 2500.00, PorcentajeAumento: 0 },
-            { Producto: 'AC FOLICO 5 x10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4000.00, PorcentajeAumento: 0 },
-            { Producto: 'ACENOCUMAROL 4MG x10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 6400.00, PorcentajeAumento: 0 },
-            { Producto: 'ACICLOVIR 800 x5', Cantidad: 5, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 6400.00, PorcentajeAumento: 0 },
-            { Producto: 'AGUA OXIGENADA 10 100cc', Cantidad: 100, Unidad: 'mililitros', Oferta: '', PrecioLista: 500.00, PorcentajeAumento: 0 },
-            { Producto: 'AGUA OXIGENADA 10 250cc', Cantidad: 1, Unidad: 'unidad', Oferta: 'D', PrecioLista: 980.00, PorcentajeAumento: 0 },
-            { Producto: 'AGUA OXIGENADA 10 500cc', Cantidad: 500, Unidad: 'mililitros', Oferta: '', PrecioLista: 1350.00, PorcentajeAumento: 0 },
-            { Producto: 'OXIGENADA TO 1litro AGUA', Cantidad: 1, Unidad: 'litro', Oferta: '', PrecioLista: 0.00, PorcentajeAumento: 0 },
-            { Producto: 'ALCOHOL 250CC', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 1400.00, PorcentajeAumento: 0 },
-            { Producto: 'ALCOHOL 500CC', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 2200.00, PorcentajeAumento: 0 },
-            { Producto: 'ALCOHOL 1 LITRO', Cantidad: 1, Unidad: 'unidad', Oferta: 'D', PrecioLista: 3800.00, PorcentajeAumento: 0 },
-            { Producto: 'ALIKAL x2', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 800.00, PorcentajeAumento: 0 },
-            { Producto: 'AMIODORONA 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3200.00, PorcentajeAumento: 0 },
-            { Producto: 'AMITRIPTILINA 25 X10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 800.00, PorcentajeAumento: 0 },
-            { Producto: 'AMITRIPTILINA 25 X20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1200.00, PorcentajeAumento: 0 },
-            { Producto: 'AMOXICILINA 500 X 8', Cantidad: 8, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3200.00, PorcentajeAumento: 0 },
-            { Producto: 'AMOXICILINA 875 X 14', Cantidad: 14, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4800.00, PorcentajeAumento: 0 },
-            { Producto: 'AMOXICILINA / CLAVULANICO 875 X 14', Cantidad: 14, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 8900.00, PorcentajeAumento: 0 },
-            { Producto: 'AMPICILINA 500 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3900.00, PorcentajeAumento: 0 },
-            { Producto: 'ANTIMICOTICO EN CREMA', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 3200.00, PorcentajeAumento: 0 },
-            { Producto: 'ASPIRINA 100 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1200.00, PorcentajeAumento: 0 },
-            { Producto: 'ASPIRINA 500 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1500.00, PorcentajeAumento: 0 },
-            { Producto: 'ATENOLOL 50 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2900.00, PorcentajeAumento: 0 },
-            { Producto: 'ATORVASTATINA 20 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4200.00, PorcentajeAumento: 0 },
-            { Producto: 'ATORVASTATINA 40 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 5600.00, PorcentajeAumento: 0 },
-            { Producto: 'BACAITINA', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 4000.00, PorcentajeAumento: 0 },
-            { Producto: 'BIFERDYL X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1200.00, PorcentajeAumento: 0 },
-            { Producto: 'BIFERDYL X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1800.00, PorcentajeAumento: 0 },
-            { Producto: 'BIPERIDENO X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
-            { Producto: 'BUPIVACAINA PESADA', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 4500.00, PorcentajeAumento: 0 },
-            { Producto: 'BUSCAPINA COMPOSITUM X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3500.00, PorcentajeAumento: 0 },
-            { Producto: 'BUSCAPINA COMPOSITUM X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4500.00, PorcentajeAumento: 0 },
-            { Producto: 'CALADRYL', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 5000.00, PorcentajeAumento: 0 },
-            { Producto: 'CAPTOPRIL 25 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1500.00, PorcentajeAumento: 0 },
-            { Producto: 'CARBAMAZEPINA 200 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3200.00, PorcentajeAumento: 0 },
-            { Producto: 'CARVEDILOL 12,5 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3800.00, PorcentajeAumento: 0 },
-            { Producto: 'CARVEDILOL 25 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4800.00, PorcentajeAumento: 0 },
-            { Producto: 'CEFALEXINA 500 X 16', Cantidad: 16, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 5200.00, PorcentajeAumento: 0 },
-            { Producto: 'CEFALEXINA 500 X 8', Cantidad: 8, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3500.00, PorcentajeAumento: 0 },
-            { Producto: 'CEFALEXINA 1GR X 16', Cantidad: 16, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 7000.00, PorcentajeAumento: 0 },
-            { Producto: 'CIPROFLOXACINA 500 X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3800.00, PorcentajeAumento: 0 },
-            { Producto: 'CLONAZELAM 0,5 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
-            { Producto: 'CLONAZELAM 1 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3200.00, PorcentajeAumento: 0 },
-            { Producto: 'CLONAZELAM 2 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4000.00, PorcentajeAumento: 0 },
-            { Producto: 'CLONAZEPAM GOTAS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 3500.00, PorcentajeAumento: 0 },
-            { Producto: 'CLONAZEPAM 2,5 MG', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4500.00, PorcentajeAumento: 0 },
-            { Producto: 'CLOTRIMAZOL OVULOS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 3800.00, PorcentajeAumento: 0 },
-            { Producto: 'CLOTRIMAZOL CREMA VAGINAL', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 3500.00, PorcentajeAumento: 0 },
-            { Producto: 'COMPLEJO B X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
-            { Producto: 'COMPLEJO B X 30', Cantidad: 30, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3500.00, PorcentajeAumento: 0 },
-            { Producto: 'DEXAMETASONA 1MG X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2500.00, PorcentajeAumento: 0 },
-            { Producto: 'DEXAMETASONA INYECTABLE', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 1800.00, PorcentajeAumento: 0 },
-            { Producto: 'DICLOFENAC 50 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1500.00, PorcentajeAumento: 0 },
-            { Producto: 'DICLOFENAC 75 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2500.00, PorcentajeAumento: 0 },
-            { Producto: 'DIPIRONA 500 X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2000.00, PorcentajeAumento: 0 },
-            { Producto: 'DIPIRONA 1GR X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
-            { Producto: 'DOMPERIDONA 10 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3200.00, PorcentajeAumento: 0 },
-            { Producto: 'ENALAPRIL 10 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1200.00, PorcentajeAumento: 0 },
-            { Producto: 'ENALAPRIL 20 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1800.00, PorcentajeAumento: 0 },
-            { Producto: 'ESPIRONOLACTONA 25 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
-            { Producto: 'ESPIRONOLACTONA 50 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3500.00, PorcentajeAumento: 0 },
-            { Producto: 'ESPIRONOLACTONA 100 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4500.00, PorcentajeAumento: 0 },
-            { Producto: 'EZETIMIBE 10 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4800.00, PorcentajeAumento: 0 },
-            { Producto: 'FARM X 2', Cantidad: 2, Unidad: 'unidades', Oferta: '0', PrecioLista: 800.00, PorcentajeAumento: 0 },
-            { Producto: 'FERRO-FOLICO 10 X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2500.00, PorcentajeAumento: 0 },
-            { Producto: 'FUROSEMIDA 40 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1500.00, PorcentajeAumento: 0 },
-            { Producto: 'GEL NEUROCAINA', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 4200.00, PorcentajeAumento: 0 },
-            { Producto: 'GLIBENCLAMIDA 5 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1800.00, PorcentajeAumento: 0 },
-            { Producto: 'GLIBENCLAMIDA 5 X 50', Cantidad: 50, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3500.00, PorcentajeAumento: 0 },
-            { Producto: 'GLICLAZIDA 80 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
-            { Producto: 'GLICLAZIDA 80 X 50', Cantidad: 50, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4500.00, PorcentajeAumento: 0 },
-            { Producto: 'IBUPROFENO 400 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2000.00, PorcentajeAumento: 0 },
-            { Producto: 'IBUPROFENO 600 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2500.00, PorcentajeAumento: 0 },
-            { Producto: 'IBUPROFENO 800 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3000.00, PorcentajeAumento: 0 },
-            { Producto: 'IMIPRAMINA 25 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2500.00, PorcentajeAumento: 0 },
-            { Producto: 'IVERMECTINA UNIDAD', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 500.00, PorcentajeAumento: 0 },
-            { Producto: 'KETOCONAZOL CREMA', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 3500.00, PorcentajeAumento: 0 },
-            { Producto: 'KETEROLAC 10 X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
-            { Producto: 'LACTULOSA X 100', Cantidad: 100, Unidad: 'mililitros', Oferta: '', PrecioLista: 3500.00, PorcentajeAumento: 0 },
-            { Producto: 'LACTULOSA X 200', Cantidad: 200, Unidad: 'mililitros', Oferta: '', PrecioLista: 4500.00, PorcentajeAumento: 0 },
-            { Producto: 'LANSOPRAZOL 30 X 15', Cantidad: 15, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3800.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 1', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 1,25', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 1,50', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 1,75', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 2', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 2,25', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 2,50', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 2,75', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 3', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 3,25', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 3,50', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 3.75', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LENTE 4', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
-            { Producto: 'LOPERAMIDA 2 X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2500.00, PorcentajeAumento: 0 },
-            { Producto: 'LOSARTAN 50 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
-            { Producto: 'LOSARTAN 100 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3500.00, PorcentajeAumento: 0 },
-            { Producto: 'MELATONINA 3 MG X 30', Cantidad: 30, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4500.00, PorcentajeAumento: 0 },
-            { Producto: 'METFORMINA 500 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1500.00, PorcentajeAumento: 0 },
-            { Producto: 'METFORMINA 850 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1800.00, PorcentajeAumento: 0 },
-            { Producto: 'METFORMINA 1GR X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2200.00, PorcentajeAumento: 0 },
-            { Producto: 'METRONIDAZOL 500 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
-            { Producto: 'NISTATINA EN CREMA', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 5200.00, PorcentajeAumento: 0 },
-            { Producto: 'OMEPRAZOL 10', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 0.00, PorcentajeAumento: 0 },
-            { Producto: 'OMEPRAZOL 20 UNIDAD', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 250.00, PorcentajeAumento: 0 },
-            { Producto: 'OMEPRAZOL 40 MG.UNIDAD', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 400.00, PorcentajeAumento: 0 },
-            { Producto: 'PASTA LASSAR', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 4400.00, PorcentajeAumento: 0 },
-            { Producto: 'PEINE FINO PLASTICO', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 300.00, PorcentajeAumento: 0 },
-            { Producto: 'PEINE FINO ACERO', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 10000.00, PorcentajeAumento: 0 },
-            { Producto: 'PERMETRINA 5% X100', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 8900.00, PorcentajeAumento: 0 },
-            { Producto: 'PERMETRINA 5% X50', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 5000.00, PorcentajeAumento: 0 },
-            { Producto: 'PIROXICAM POR UNIDAD', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 200.00, PorcentajeAumento: 0 },
-            { Producto: 'PLASTICOS VARIOS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 0.00, PorcentajeAumento: 0 },
-            { Producto: 'PULMICORT', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 12500.00, PorcentajeAumento: 0 },
-            { Producto: 'RANITIDINA X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
-            { Producto: 'Sales Rehidratantes', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 800.00, PorcentajeAumento: 0 },
-            { Producto: 'SERTRALINA 50 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3800.00, PorcentajeAumento: 0 },
-            { Producto: 'SERTRALINA 100 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4800.00, PorcentajeAumento: 0 },
-            { Producto: 'SOLUCION FISIOLOGICA 100ML', Cantidad: 100, Unidad: 'mililitros', Oferta: '', PrecioLista: 1200.00, PorcentajeAumento: 0 },
-            { Producto: 'SOLUCION FISIOLOGICA 250ML', Cantidad: 250, Unidad: 'mililitros', Oferta: '', PrecioLista: 1800.00, PorcentajeAumento: 0 },
-            { Producto: 'SOLUCION FISIOLOGICA 500ML', Cantidad: 500, Unidad: 'mililitros', Oferta: '', PrecioLista: 2500.00, PorcentajeAumento: 0 },
-            { Producto: 'SUERO', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 2500.00, PorcentajeAumento: 0 },
-            { Producto: 'SUPOSITORIOS DE GLICERINA ADULTOS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 1500.00, PorcentajeAumento: 0 },
-            { Producto: 'SUPOSITORIOS DE GLICERINA NIÑOS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 1200.00, PorcentajeAumento: 0 },
-            { Producto: 'TETRACICLINA UNIDAD', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 250.00, PorcentajeAumento: 0 },
-            { Producto: 'TERMOMETRO', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 1800.00, PorcentajeAumento: 0 },
-            { Producto: 'TIRAS REACTIVAS X 25', Cantidad: 25, Unidad: 'unidades', Oferta: '', PrecioLista: 12000.00, PorcentajeAumento: 0 },
-            { Producto: 'TIRAS REACTIVAS X 50', Cantidad: 50, Unidad: 'unidades', Oferta: '', PrecioLista: 18000.00, PorcentajeAumento: 0 },
-            { Producto: 'TOALLAS HIGIENICAS PAQUETE X 10', Cantidad: 10, Unidad: 'unidades', Oferta: '', PrecioLista: 1500.00, PorcentajeAumento: 0 },
-            { Producto: 'TOALLAS HIGIENICAS PAQUETE X 8', Cantidad: 8, Unidad: 'unidades', Oferta: '', PrecioLista: 1200.00, PorcentajeAumento: 0 },
-            { Producto: 'TRAMADOL 50 X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3200.00, PorcentajeAumento: 0 },
-            { Producto: 'VASITEC 5', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 4350.00, PorcentajeAumento: 0 },
-            { Producto: 'VASELINA LIQUIDA MEDIANA (500CMP)', Cantidad: 500, Unidad: 'mililitros', Oferta: '', PrecioLista: 7500.00, PorcentajeAumento: 0 },
-            { Producto: 'VASELINA SOLIDA 100GR', Cantidad: 100, Unidad: 'gramos', Oferta: '', PrecioLista: 6800.00, PorcentajeAumento: 0 },
-            { Producto: 'VASELINA SOLIDA 250GR', Cantidad: 250, Unidad: 'gramos', Oferta: '', PrecioLista: 17500.00, PorcentajeAumento: 0 },
-            { Producto: 'VASELINA SOLIDA 30GR', Cantidad: 30, Unidad: 'gramos', Oferta: '', PrecioLista: 3100.00, PorcentajeAumento: 0 },
-            { Producto: 'VASELINA SOLIDA 50GR', Cantidad: 50, Unidad: 'gramos', Oferta: '', PrecioLista: 4700.00, PorcentajeAumento: 0 },
-            { Producto: 'VENDA NRO 5 3 METROS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 400.00, PorcentajeAumento: 0 }
+            { id: 1, Producto: 'AC FOLICO 1x10', Cantidad: 10, Unidad: 'comprimidos', Oferta: 'D', PrecioLista: 2500.00, PorcentajeAumento: 0 },
+            { id: 2, Producto: 'AC FOLICO 5 x10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4000.00, PorcentajeAumento: 0 },
+            { id: 3, Producto: 'ACENOCUMAROL 4MG x10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 6400.00, PorcentajeAumento: 0 },
+            { id: 4, Producto: 'ACICLOVIR 800 x5', Cantidad: 5, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 6400.00, PorcentajeAumento: 0 },
+            { id: 5, Producto: 'AGUA OXIGENADA 10 100cc', Cantidad: 100, Unidad: 'mililitros', Oferta: '', PrecioLista: 500.00, PorcentajeAumento: 0 },
+            { id: 6, Producto: 'AGUA OXIGENADA 10 250cc', Cantidad: 1, Unidad: 'unidad', Oferta: 'D', PrecioLista: 980.00, PorcentajeAumento: 0 },
+            { id: 7, Producto: 'AGUA OXIGENADA 10 500cc', Cantidad: 500, Unidad: 'mililitros', Oferta: '', PrecioLista: 1350.00, PorcentajeAumento: 0 },
+            { id: 8, Producto: 'OXIGENADA TO 1litro AGUA', Cantidad: 1, Unidad: 'litro', Oferta: '', PrecioLista: 0.00, PorcentajeAumento: 0 },
+            { id: 9, Producto: 'ALCOHOL 250CC', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 1400.00, PorcentajeAumento: 0 },
+            { id: 10, Producto: 'ALCOHOL 500CC', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 2200.00, PorcentajeAumento: 0 },
+            { id: 11, Producto: 'ALCOHOL 1 LITRO', Cantidad: 1, Unidad: 'unidad', Oferta: 'D', PrecioLista: 3800.00, PorcentajeAumento: 0 },
+            { id: 12, Producto: 'ALIKAL x2', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 800.00, PorcentajeAumento: 0 },
+            { id: 13, Producto: 'AMIODORONA 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3200.00, PorcentajeAumento: 0 },
+            { id: 14, Producto: 'AMITRIPTILINA 25 X10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 800.00, PorcentajeAumento: 0 },
+            { id: 15, Producto: 'AMITRIPTILINA 25 X20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1200.00, PorcentajeAumento: 0 },
+            { id: 16, Producto: 'AMOXICILINA 500 X 8', Cantidad: 8, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3200.00, PorcentajeAumento: 0 },
+            { id: 17, Producto: 'AMOXICILINA 875 X 14', Cantidad: 14, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4800.00, PorcentajeAumento: 0 },
+            { id: 18, Producto: 'AMOXICILINA / CLAVULANICO 875 X 14', Cantidad: 14, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 8900.00, PorcentajeAumento: 0 },
+            { id: 19, Producto: 'AMPICILINA 500 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3900.00, PorcentajeAumento: 0 },
+            { id: 20, Producto: 'ANTIMICOTICO EN CREMA', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 3200.00, PorcentajeAumento: 0 },
+            { id: 21, Producto: 'ASPIRINA 100 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1200.00, PorcentajeAumento: 0 },
+            { id: 22, Producto: 'ASPIRINA 500 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1500.00, PorcentajeAumento: 0 },
+            { id: 23, Producto: 'ATENOLOL 50 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2900.00, PorcentajeAumento: 0 },
+            { id: 24, Producto: 'ATORVASTATINA 20 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4200.00, PorcentajeAumento: 0 },
+            { id: 25, Producto: 'ATORVASTATINA 40 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 5600.00, PorcentajeAumento: 0 },
+            { id: 26, Producto: 'BACAITINA', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 4000.00, PorcentajeAumento: 0 },
+            { id: 27, Producto: 'BIFERDYL X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1200.00, PorcentajeAumento: 0 },
+            { id: 28, Producto: 'BIFERDYL X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1800.00, PorcentajeAumento: 0 },
+            { id: 29, Producto: 'BIPERIDENO X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
+            { id: 30, Producto: 'BUPIVACAINA PESADA', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 4500.00, PorcentajeAumento: 0 },
+            { id: 31, Producto: 'BUSCAPINA COMPOSITUM X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3500.00, PorcentajeAumento: 0 },
+            { id: 32, Producto: 'BUSCAPINA COMPOSITUM X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4500.00, PorcentajeAumento: 0 },
+            { id: 33, Producto: 'CALADRYL', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 5000.00, PorcentajeAumento: 0 },
+            { id: 34, Producto: 'CAPTOPRIL 25 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1500.00, PorcentajeAumento: 0 },
+            { id: 35, Producto: 'CARBAMAZEPINA 200 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3200.00, PorcentajeAumento: 0 },
+            { id: 36, Producto: 'CARVEDILOL 12,5 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3800.00, PorcentajeAumento: 0 },
+            { id: 37, Producto: 'CARVEDILOL 25 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4800.00, PorcentajeAumento: 0 },
+            { id: 38, Producto: 'CEFALEXINA 500 X 16', Cantidad: 16, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 5200.00, PorcentajeAumento: 0 },
+            { id: 39, Producto: 'CEFALEXINA 500 X 8', Cantidad: 8, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3500.00, PorcentajeAumento: 0 },
+            { id: 40, Producto: 'CEFALEXINA 1GR X 16', Cantidad: 16, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 7000.00, PorcentajeAumento: 0 },
+            { id: 41, Producto: 'CIPROFLOXACINA 500 X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3800.00, PorcentajeAumento: 0 },
+            { id: 42, Producto: 'CLONAZELAM 0,5 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
+            { id: 43, Producto: 'CLONAZELAM 1 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3200.00, PorcentajeAumento: 0 },
+            { id: 44, Producto: 'CLONAZELAM 2 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4000.00, PorcentajeAumento: 0 },
+            { id: 45, Producto: 'CLONAZEPAM GOTAS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 3500.00, PorcentajeAumento: 0 },
+            { id: 46, Producto: 'CLONAZEPAM 2,5 MG', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4500.00, PorcentajeAumento: 0 },
+            { id: 47, Producto: 'CLOTRIMAZOL OVULOS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 3800.00, PorcentajeAumento: 0 },
+            { id: 48, Producto: 'CLOTRIMAZOL CREMA VAGINAL', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 3500.00, PorcentajeAumento: 0 },
+            { id: 49, Producto: 'COMPLEJO B X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
+            { id: 50, Producto: 'COMPLEJO B X 30', Cantidad: 30, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3500.00, PorcentajeAumento: 0 },
+            { id: 51, Producto: 'DEXAMETASONA 1MG X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2500.00, PorcentajeAumento: 0 },
+            { id: 52, Producto: 'DEXAMETASONA INYECTABLE', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 1800.00, PorcentajeAumento: 0 },
+            { id: 53, Producto: 'DICLOFENAC 50 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1500.00, PorcentajeAumento: 0 },
+            { id: 54, Producto: 'DICLOFENAC 75 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2500.00, PorcentajeAumento: 0 },
+            { id: 55, Producto: 'DIPIRONA 500 X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2000.00, PorcentajeAumento: 0 },
+            { id: 56, Producto: 'DIPIRONA 1GR X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
+            { id: 57, Producto: 'DOMPERIDONA 10 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3200.00, PorcentajeAumento: 0 },
+            { id: 58, Producto: 'ENALAPRIL 10 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1200.00, PorcentajeAumento: 0 },
+            { id: 59, Producto: 'ENALAPRIL 20 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1800.00, PorcentajeAumento: 0 },
+            { id: 60, Producto: 'ESPIRONOLACTONA 25 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
+            { id: 61, Producto: 'ESPIRONOLACTONA 50 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3500.00, PorcentajeAumento: 0 },
+            { id: 62, Producto: 'ESPIRONOLACTONA 100 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4500.00, PorcentajeAumento: 0 },
+            { id: 63, Producto: 'EZETIMIBE 10 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4800.00, PorcentajeAumento: 0 },
+            { id: 64, Producto: 'FARM X 2', Cantidad: 2, Unidad: 'unidades', Oferta: '0', PrecioLista: 800.00, PorcentajeAumento: 0 },
+            { id: 65, Producto: 'FERRO-FOLICO 10 X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2500.00, PorcentajeAumento: 0 },
+            { id: 66, Producto: 'FUROSEMIDA 40 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1500.00, PorcentajeAumento: 0 },
+            { id: 67, Producto: 'GEL NEUROCAINA', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 4200.00, PorcentajeAumento: 0 },
+            { id: 68, Producto: 'GLIBENCLAMIDA 5 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1800.00, PorcentajeAumento: 0 },
+            { id: 69, Producto: 'GLIBENCLAMIDA 5 X 50', Cantidad: 50, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3500.00, PorcentajeAumento: 0 },
+            { id: 70, Producto: 'GLICLAZIDA 80 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
+            { id: 71, Producto: 'GLICLAZIDA 80 X 50', Cantidad: 50, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4500.00, PorcentajeAumento: 0 },
+            { id: 72, Producto: 'IBUPROFENO 400 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2000.00, PorcentajeAumento: 0 },
+            { id: 73, Producto: 'IBUPROFENO 600 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2500.00, PorcentajeAumento: 0 },
+            { id: 74, Producto: 'IBUPROFENO 800 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3000.00, PorcentajeAumento: 0 },
+            { id: 75, Producto: 'IMIPRAMINA 25 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2500.00, PorcentajeAumento: 0 },
+            { id: 76, Producto: 'IVERMECTINA UNIDAD', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 500.00, PorcentajeAumento: 0 },
+            { id: 77, Producto: 'KETOCONAZOL CREMA', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 3500.00, PorcentajeAumento: 0 },
+            { id: 78, Producto: 'KETEROLAC 10 X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
+            { id: 79, Producto: 'LACTULOSA X 100', Cantidad: 100, Unidad: 'mililitros', Oferta: '', PrecioLista: 3500.00, PorcentajeAumento: 0 },
+            { id: 80, Producto: 'LACTULOSA X 200', Cantidad: 200, Unidad: 'mililitros', Oferta: '', PrecioLista: 4500.00, PorcentajeAumento: 0 },
+            { id: 81, Producto: 'LANSOPRAZOL 30 X 15', Cantidad: 15, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3800.00, PorcentajeAumento: 0 },
+            { id: 82, Producto: 'LENTE 1', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 83, Producto: 'LENTE 1,25', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 84, Producto: 'LENTE 1,50', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 85, Producto: 'LENTE 1,75', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 86, Producto: 'LENTE 2', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 87, Producto: 'LENTE 2,25', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 88, Producto: 'LENTE 2,50', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 89, Producto: 'LENTE 2,75', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 90, Producto: 'LENTE 3', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 91, Producto: 'LENTE 3,25', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 92, Producto: 'LENTE 3,50', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 93, Producto: 'LENTE 3.75', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 94, Producto: 'LENTE 4', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 6500.00, PorcentajeAumento: 0 },
+            { id: 95, Producto: 'LOPERAMIDA 2 X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2500.00, PorcentajeAumento: 0 },
+            { id: 96, Producto: 'LOSARTAN 50 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
+            { id: 97, Producto: 'LOSARTAN 100 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3500.00, PorcentajeAumento: 0 },
+            { id: 98, Producto: 'MELATONINA 3 MG X 30', Cantidad: 30, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4500.00, PorcentajeAumento: 0 },
+            { id: 99, Producto: 'METFORMINA 500 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1500.00, PorcentajeAumento: 0 },
+            { id: 100, Producto: 'METFORMINA 850 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 1800.00, PorcentajeAumento: 0 },
+            { id: 101, Producto: 'METFORMINA 1GR X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2200.00, PorcentajeAumento: 0 },
+            { id: 102, Producto: 'METRONIDAZOL 500 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
+            { id: 103, Producto: 'NISTATINA EN CREMA', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 5200.00, PorcentajeAumento: 0 },
+            { id: 104, Producto: 'OMEPRAZOL 10', Cantidad: 1, Unidad: 'unidad', Oferta: '0', PrecioLista: 0.00, PorcentajeAumento: 0 },
+            { id: 105, Producto: 'OMEPRAZOL 20 UNIDAD', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 250.00, PorcentajeAumento: 0 },
+            { id: 106, Producto: 'OMEPRAZOL 40 MG.UNIDAD', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 400.00, PorcentajeAumento: 0 },
+            { id: 107, Producto: 'PASTA LASSAR', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 4400.00, PorcentajeAumento: 0 },
+            { id: 108, Producto: 'PEINE FINO PLASTICO', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 300.00, PorcentajeAumento: 0 },
+            { id: 109, Producto: 'PEINE FINO ACERO', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 10000.00, PorcentajeAumento: 0 },
+            { id: 110, Producto: 'PERMETRINA 5% X100', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 8900.00, PorcentajeAumento: 0 },
+            { id: 111, Producto: 'PERMETRINA 5% X50', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 5000.00, PorcentajeAumento: 0 },
+            { id: 112, Producto: 'PIROXICAM POR UNIDAD', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 200.00, PorcentajeAumento: 0 },
+            { id: 113, Producto: 'PLASTICOS VARIOS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 0.00, PorcentajeAumento: 0 },
+            { id: 114, Producto: 'PULMICORT', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 12500.00, PorcentajeAumento: 0 },
+            { id: 115, Producto: 'RANITIDINA X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 2800.00, PorcentajeAumento: 0 },
+            { id: 116, Producto: 'Sales Rehidratantes', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 800.00, PorcentajeAumento: 0 },
+            { id: 117, Producto: 'SERTRALINA 50 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3800.00, PorcentajeAumento: 0 },
+            { id: 118, Producto: 'SERTRALINA 100 X 20', Cantidad: 20, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 4800.00, PorcentajeAumento: 0 },
+            { id: 119, Producto: 'SOLUCION FISIOLOGICA 100ML', Cantidad: 100, Unidad: 'mililitros', Oferta: '', PrecioLista: 1200.00, PorcentajeAumento: 0 },
+            { id: 120, Producto: 'SOLUCION FISIOLOGICA 250ML', Cantidad: 250, Unidad: 'mililitros', Oferta: '', PrecioLista: 1800.00, PorcentajeAumento: 0 },
+            { id: 121, Producto: 'SOLUCION FISIOLOGICA 500ML', Cantidad: 500, Unidad: 'mililitros', Oferta: '', PrecioLista: 2500.00, PorcentajeAumento: 0 },
+            { id: 122, Producto: 'SUERO', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 2500.00, PorcentajeAumento: 0 },
+            { id: 123, Producto: 'SUPOSITORIOS DE GLICERINA ADULTOS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 1500.00, PorcentajeAumento: 0 },
+            { id: 124, Producto: 'SUPOSITORIOS DE GLICERINA NIÑOS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 1200.00, PorcentajeAumento: 0 },
+            { id: 125, Producto: 'TETRACICLINA UNIDAD', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 250.00, PorcentajeAumento: 0 },
+            { id: 126, Producto: 'TERMOMETRO', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 1800.00, PorcentajeAumento: 0 },
+            { id: 127, Producto: 'TIRAS REACTIVAS X 25', Cantidad: 25, Unidad: 'unidades', Oferta: '', PrecioLista: 12000.00, PorcentajeAumento: 0 },
+            { id: 128, Producto: 'TIRAS REACTIVAS X 50', Cantidad: 50, Unidad: 'unidades', Oferta: '', PrecioLista: 18000.00, PorcentajeAumento: 0 },
+            { id: 129, Producto: 'TOALLAS HIGIENICAS PAQUETE X 10', Cantidad: 10, Unidad: 'unidades', Oferta: '', PrecioLista: 1500.00, PorcentajeAumento: 0 },
+            { id: 130, Producto: 'TOALLAS HIGIENICAS PAQUETE X 8', Cantidad: 8, Unidad: 'unidades', Oferta: '', PrecioLista: 1200.00, PorcentajeAumento: 0 },
+            { id: 131, Producto: 'TRAMADOL 50 X 10', Cantidad: 10, Unidad: 'comprimidos', Oferta: '0', PrecioLista: 3200.00, PorcentajeAumento: 0 },
+            { id: 132, Producto: 'VASITEC 5', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 4350.00, PorcentajeAumento: 0 },
+            { id: 133, Producto: 'VASELINA LIQUIDA MEDIANA (500CMP)', Cantidad: 500, Unidad: 'mililitros', Oferta: '', PrecioLista: 7500.00, PorcentajeAumento: 0 },
+            { id: 134, Producto: 'VASELINA SOLIDA 100GR', Cantidad: 100, Unidad: 'gramos', Oferta: '', PrecioLista: 6800.00, PorcentajeAumento: 0 },
+            { id: 135, Producto: 'VASELINA SOLIDA 250GR', Cantidad: 250, Unidad: 'gramos', Oferta: '', PrecioLista: 17500.00, PorcentajeAumento: 0 },
+            { id: 136, Producto: 'VASELINA SOLIDA 30GR', Cantidad: 30, Unidad: 'gramos', Oferta: '', PrecioLista: 3100.00, PorcentajeAumento: 0 },
+            { id: 137, Producto: 'VASELINA SOLIDA 50GR', Cantidad: 50, Unidad: 'gramos', Oferta: '', PrecioLista: 4700.00, PorcentajeAumento: 0 },
+            { id: 138, Producto: 'VENDA NRO 5 3 METROS', Cantidad: 1, Unidad: 'unidad', Oferta: '', PrecioLista: 400.00, PorcentajeAumento: 0 }
         ];
 
-        let products = []; // Aquí se cargarán los productos, posiblemente desde localStorage
-        let is_admin_mode = false; // Estado para el modo administrador
-        let currentOrder = []; // Array para almacenar los productos en el pedido
+        let products = []; // Productos actualmente en la tabla (incluyendo cambios de aumento)
+        let is_dev_mode = false; // Estado para el modo desarrollador
+
+        // Arrays para las 3 listas de pedidos
+        let genericOrder = [];
+        let preparedOrder = [];
+        let perfumeryOrder = [];
+        let currentActiveOrder = 'generic'; // Define qué lista de pedidos se está viendo/editando
+
+        // Lista para la "Calculadora de Producto" / "Cálculo Rápido"
+        let quickCheckItems = [];
+
+        // --- Elementos del DOM ---
+        const loginModal = document.getElementById('login-modal');
+        const loginForm = document.getElementById('login-form');
+        const loginErrorMsg = document.getElementById('login-error-msg');
+        const closeModalBtn = document.querySelector('#login-modal .close-button');
+        const devModeToggleBtn = document.getElementById('dev-mode-toggle');
 
         const productTableBody = document.querySelector('#product-table tbody');
         const searchBar = document.getElementById('search-bar');
+        const globalPercentageInput = document.getElementById('global-percentage-input');
         const increasePriceBtn = document.getElementById('increase-price-btn');
         const resetPricesBtn = document.getElementById('reset-prices-btn');
-        const calcInput = document.getElementById('calc-input-percentage');
-        const adminModeToggleBtn = document.getElementById('admin-mode-toggle');
 
-        // Elementos de la calculadora
-        const calculatorOutput = document.getElementById('calculator-output');
-        const calculatorGrid = document.getElementById('calculator-grid');
-        let currentInput = '0';
-        let operator = null;
-        let firstOperand = null;
-        let waitingForSecondOperand = false;
+        const quickPriceCheckList = document.getElementById('quick-price-check-list');
+        const quickCheckTotalDisplay = document.getElementById('quick-check-total');
 
-        // Elementos del pedido
-        const orderList = document.getElementById('order-list');
-        const orderTotalDisplay = document.getElementById('order-total');
-        const clearOrderBtn = document.getElementById('clear-order-btn');
-        const finalizeOrderBtn = document.getElementById('finalize-order-btn');
+        const orderTabsContainer = document.getElementById('order-tabs');
+        const tabGenericos = document.getElementById('tab-genericos');
+        const tabPreparados = document.getElementById('tab-preparados');
+        const tabPerfumeria = document.getElementById('tab-perfumeria');
+        const currentOrderList = document.getElementById('current-order-list');
+        const orderTotalDisplay = document.getElementById('order-total-display');
+        const clearCurrentOrderBtn = document.getElementById('clear-current-order-btn');
+        const printTicketBtn = document.getElementById('print-ticket-btn');
 
+        // --- Funciones de Utilidad ---
+        function formatCurrency(amount) {
+            return `$${amount.toFixed(2)}`;
+        }
 
-        // --- Funciones de Productos ---
+        function calculateFinalPrice(priceLista, porcentajeAumento) {
+            return priceLista * (1 + (porcentajeAumento / 100));
+        }
 
+        // --- Funciones de Productos y Renderizado de Tabla ---
         function saveProducts() {
             localStorage.setItem('products', JSON.stringify(products));
         }
@@ -439,11 +626,12 @@
                 products = JSON.parse(storedProducts);
             } else {
                 // Si no hay productos guardados, usamos los predeterminados como base
-                // Hacemos una copia profunda para que no se modifique defaultProducts directamente
                 products = JSON.parse(JSON.stringify(defaultProducts));
                 saveProducts();
             }
         }
+
+        let currentExpandedRow = null; // Para manejar la fila expandida con botones
 
         function renderProducts(filter = '') {
             productTableBody.innerHTML = '';
@@ -453,245 +641,371 @@
 
             filteredProducts.forEach(product => {
                 const row = productTableBody.insertRow();
+                row.classList.add('product-row'); // Clase para identificar filas de producto
+                row.dataset.productId = product.id; // Guarda el ID para fácil acceso
 
-                // Calcular Precio Final
-                const precioFinal = product.PrecioLista * (1 + (product.PorcentajeAumento / 100));
+                const precioFinal = calculateFinalPrice(product.PrecioLista, product.PorcentajeAumento);
 
+                row.insertCell().textContent = product.id; // Código (autogenerado por ahora)
                 row.insertCell().textContent = product.Producto;
                 row.insertCell().textContent = product.Cantidad;
                 row.insertCell().textContent = product.Unidad;
                 row.insertCell().textContent = product.Oferta;
-
-                // Columna de Precio Lista (solo visible para admin)
-                const priceListaCell = row.insertCell();
-                priceListaCell.textContent = `$${product.PrecioLista.toFixed(2)}`;
-                priceListaCell.classList.add('admin-only'); // Clase para ocultar/mostrar
-
-                // Columna de Precio Final
-                const precioFinalCell = row.insertCell();
-                precioFinalCell.textContent = `$${precioFinal.toFixed(2)}`;
-
-                // Columna de acciones (Botón Añadir al Pedido)
-                const actionsCell = row.insertCell();
-                const addBtn = document.createElement('button');
-                addBtn.textContent = 'Añadir al Pedido';
-                addBtn.classList.add('btn');
-                addBtn.onclick = () => addToOrder(product, precioFinal); // Pasar el producto y el precio final calculado
-                actionsCell.appendChild(addBtn);
+                row.insertCell().textContent = formatCurrency(product.PrecioLista);
+                row.insertCell().textContent = `${product.PorcentajeAumento}%`;
+                row.insertCell().textContent = formatCurrency(precioFinal);
             });
 
-            // Actualizar la visibilidad de las columnas admin
-            updateAdminView();
+            // Añadir listeners para expandir/colapsar botones
+            productTableBody.querySelectorAll('.product-row').forEach(row => {
+                row.addEventListener('click', (event) => {
+                    // Si el click fue en un botón, no hagas nada (para no expandir/colapsar)
+                    if (event.target.tagName === 'BUTTON') {
+                        return;
+                    }
+                    toggleProductActionButtons(row);
+                });
+            });
+
+            updateDevModeVisibility(); // Actualizar visibilidad de elementos de desarrollador
         }
 
-        function updateAdminView() {
-            const adminCells = document.querySelectorAll('.admin-only');
-            const adminHeaders = document.querySelectorAll('.admin-only-th');
-            if (is_admin_mode) {
-                document.body.classList.add('admin-mode');
+        function toggleProductActionButtons(row) {
+            // Si ya hay una fila expandida y es diferente a la actual, colapsa la anterior
+            if (currentExpandedRow && currentExpandedRow !== row) {
+                removeActionButtons(currentExpandedRow);
+            }
+
+            // Si la fila actual ya tiene botones, colápsala
+            if (row.nextElementSibling && row.nextElementSibling.classList.contains('action-buttons-row')) {
+                removeActionButtons(row);
+                currentExpandedRow = null;
             } else {
-                document.body.classList.remove('admin-mode');
+                // Expande la fila actual
+                displayActionButtons(row);
+                currentExpandedRow = row;
             }
         }
 
-        // --- Funciones de Calculadora ---
+        function displayActionButtons(row) {
+            const actionRow = productTableBody.insertRow(row.rowIndex + 1);
+            actionRow.classList.add('action-buttons-row');
+            const cell = actionRow.insertCell(0);
+            cell.colSpan = 8; // Ocupa todas las columnas
 
-        function updateCalculatorDisplay() {
-            calculatorOutput.textContent = currentInput;
+            const productId = parseInt(row.dataset.productId);
+            const product = products.find(p => p.id === productId);
+
+            cell.innerHTML = `
+                <button class="btn btn-blue add-to-order-btn" data-product-id="${product.id}" data-category="generic">Añadir a GENÉRICOS</button>
+                <button class="btn btn-blue add-to-order-btn" data-product-id="${product.id}" data-category="prepared">Añadir a PREPARADOS</button>
+                <button class="btn btn-blue add-to-order-btn" data-product-id="${product.id}" data-category="perfumery">Añadir a PERFUMERÍA</button>
+                <button class="btn add-to-quick-check-btn" data-product-id="${product.id}">Añadir a Cálculo Rápido</button>
+            `;
+
+            actionRow.querySelectorAll('.add-to-order-btn').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const prodId = parseInt(event.target.dataset.productId);
+                    const category = event.target.dataset.category;
+                    const selectedProduct = products.find(p => p.id === prodId);
+                    if (selectedProduct) {
+                        addToOrder(selectedProduct, category);
+                    }
+                    removeActionButtons(row); // Colapsa los botones después de añadir
+                    currentExpandedRow = null;
+                });
+            });
+
+            actionRow.querySelector('.add-to-quick-check-btn').addEventListener('click', (event) => {
+                const prodId = parseInt(event.target.dataset.productId);
+                const selectedProduct = products.find(p => p.id === prodId);
+                if (selectedProduct) {
+                    addToQuickCheck(selectedProduct);
+                }
+                removeActionButtons(row); // Colapsa los botones
+                currentExpandedRow = null;
+            });
         }
 
-        calculatorGrid.addEventListener('click', (event) => {
-            const { target } = event;
-            const value = target.textContent;
-
-            if (!target.classList.contains('calc-button')) {
-                return; // No es un botón de calculadora
+        function removeActionButtons(row) {
+            if (row.nextElementSibling && row.nextElementSibling.classList.contains('action-buttons-row')) {
+                row.nextElementSibling.remove();
             }
+        }
 
-            if (target.classList.contains('operator')) {
-                handleOperator(value);
-                return;
+        // --- Funciones de Modo Desarrollador (Login) ---
+        const DEV_EMAIL = 'lekarna@faramciapintar.com';
+        const DEV_PASSWORD = 'Farmaco00';
+
+        function showLoginModal() {
+            loginModal.style.display = 'flex';
+            loginErrorMsg.textContent = '';
+        }
+
+        function hideLoginModal() {
+            loginModal.style.display = 'none';
+            loginForm.reset();
+        }
+
+        function updateDevModeVisibility() {
+            if (is_dev_mode) {
+                document.body.classList.add('dev-mode');
+                devModeToggleBtn.textContent = 'Salir de Desarrollador';
+            } else {
+                document.body.classList.remove('dev-mode');
+                devModeToggleBtn.textContent = 'Modo Desarrollador';
             }
+            renderActiveOrder(); // Re-renderiza el pedido para actualizar visibilidad de botones
+        }
 
-            if (target.classList.contains('equal')) {
-                performCalculation();
-                return;
+        loginForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            if (email === DEV_EMAIL && password === DEV_PASSWORD) {
+                is_dev_mode = true;
+                hideLoginModal();
+                updateDevModeVisibility();
+                alert('Modo Desarrollador ACTIVADO. ¡Bienvenido!');
+                renderProducts(searchBar.value); // Re-renderizar para mostrar elementos ocultos
+            } else {
+                loginErrorMsg.textContent = 'Email o contraseña incorrectos.';
             }
-
-            if (value === 'C') {
-                resetCalculator();
-                return;
-            }
-
-            // Es un número o punto
-            inputDigit(value);
-            updateCalculatorDisplay();
         });
 
-        function inputDigit(digit) {
-            if (waitingForSecondOperand) {
-                currentInput = digit;
-                waitingForSecondOperand = false;
+        closeModalBtn.addEventListener('click', hideLoginModal);
+        window.addEventListener('click', (event) => {
+            if (event.target === loginModal) {
+                hideLoginModal();
+            }
+        });
+
+        devModeToggleBtn.addEventListener('click', () => {
+            if (is_dev_mode) {
+                is_dev_mode = false;
+                updateDevModeVisibility();
+                alert('Modo Desarrollador DESACTIVADO.');
             } else {
-                currentInput = currentInput === '0' ? digit : currentInput + digit;
+                showLoginModal();
+            }
+        });
+
+        // --- Funciones de Listas de Pedidos (Carrito) ---
+
+        function getOrderList(category) {
+            switch (category) {
+                case 'generic': return genericOrder;
+                case 'prepared': return preparedOrder;
+                case 'perfumery': return perfumeryOrder;
+                default: return [];
             }
         }
 
-        function handleOperator(nextOperator) {
-            const inputValue = parseFloat(currentInput);
+        function addToOrder(product, category) {
+            const targetOrder = getOrderList(category);
+            const existingItem = targetOrder.find(item => item.id === product.id);
 
-            if (operator && waitingForSecondOperand) {
-                operator = nextOperator;
-                return;
-            }
+            const precioFinal = calculateFinalPrice(product.PrecioLista, product.PorcentajeAumento);
 
-            if (firstOperand === null) {
-                firstOperand = inputValue;
-            } else if (operator) {
-                const result = operate(firstOperand, inputValue, operator);
-                currentInput = String(result);
-                firstOperand = result;
-            }
-
-            waitingForSecondOperand = true;
-            operator = nextOperator;
-            updateCalculatorDisplay();
-        }
-
-        function performCalculation() {
-            if (firstOperand === null || operator === null) {
-                return;
-            }
-
-            const inputValue = parseFloat(currentInput);
-            const result = operate(firstOperand, inputValue, operator);
-
-            currentInput = String(result);
-            firstOperand = null;
-            operator = null;
-            waitingForSecondOperand = false;
-            updateCalculatorDisplay();
-        }
-
-        function operate(operand1, operand2, op) {
-            switch (op) {
-                case '+': return operand1 + operand2;
-                case '-': return operand1 - operand2;
-                case '*': return operand1 * operand2;
-                case '/': return operand1 / operand2;
-                default: return operand2;
-            }
-        }
-
-        function resetCalculator() {
-            currentInput = '0';
-            firstOperand = null;
-            operator = null;
-            waitingForSecondOperand = false;
-            updateCalculatorDisplay();
-        }
-
-
-        // --- Funciones de Pedido ---
-
-        function addToOrder(product, finalPrice) {
-            const existingItemIndex = currentOrder.findIndex(item => item.Producto === product.Producto);
-
-            if (existingItemIndex > -1) {
-                // Si el producto ya está, incrementa la cantidad
-                currentOrder[existingItemIndex].quantity += 1;
+            if (existingItem) {
+                existingItem.quantity++;
             } else {
-                // Si no está, añádelo al carrito
-                currentOrder.push({
+                targetOrder.push({
                     ...product,
-                    pricePerUnit: finalPrice, // Guardar el precio final en el pedido
+                    precioFinal: precioFinal,
                     quantity: 1
                 });
             }
-            renderOrder();
+            alert(`"${product.Producto}" añadido a la lista de ${category.toUpperCase()}.`);
+            renderActiveOrder();
         }
 
-        function renderOrder() {
-            orderList.innerHTML = '';
+        function renderActiveOrder() {
+            const activeOrderList = getOrderList(currentActiveOrder);
+            currentOrderList.innerHTML = '';
             let total = 0;
 
-            if (currentOrder.length === 0) {
-                orderList.innerHTML = '<li>No hay productos en el pedido.</li>';
+            if (activeOrderList.length === 0) {
+                currentOrderList.innerHTML = `<li>No hay productos en el pedido de ${currentActiveOrder.toUpperCase()}.</li>`;
             } else {
-                currentOrder.forEach((item, index) => {
+                activeOrderList.forEach((item, index) => {
                     const listItem = document.createElement('li');
-                    const itemTotal = item.pricePerUnit * item.quantity;
+                    const itemTotal = item.precioFinal * item.quantity;
                     total += itemTotal;
 
                     listItem.innerHTML = `
-                        <span>${item.Producto} (${item.quantity} x $${item.pricePerUnit.toFixed(2)})</span>
-                        <span>$${itemTotal.toFixed(2)}
-                            <button class="remove-item-btn" data-index="${index}">X</button>
+                        <span class="item-info">
+                            ${item.Producto} (${item.Unidad.includes('x') ? item.Unidad : (item.quantity + ' ' + item.Unidad)})
+                        </span>
+                        <span class="item-price">
+                            ${formatCurrency(itemTotal)}
+                            <button class="remove-item-btn" data-index="${index}" data-category="${currentActiveOrder}">X</button>
                         </span>
                     `;
-                    orderList.appendChild(listItem);
+                    currentOrderList.appendChild(listItem);
                 });
             }
-            orderTotalDisplay.textContent = `Total: $${total.toFixed(2)}`;
-            addRemoveItemListeners(); // Volver a añadir listeners después de renderizar
+            orderTotalDisplay.textContent = `Total Pedido: ${formatCurrency(total)}`;
+            addRemoveItemListeners();
         }
 
         function addRemoveItemListeners() {
             document.querySelectorAll('.remove-item-btn').forEach(button => {
                 button.onclick = (event) => {
                     const indexToRemove = parseInt(event.target.dataset.index);
-                    removeItemFromOrder(indexToRemove);
+                    const category = event.target.dataset.category;
+                    removeItemFromOrder(indexToRemove, category);
                 };
             });
         }
 
-        function removeItemFromOrder(index) {
-            currentOrder.splice(index, 1);
-            renderOrder();
-        }
-
-        function clearOrder() {
-            if (confirm('¿Estás seguro de que quieres limpiar todo el pedido?')) {
-                currentOrder = [];
-                renderOrder();
-                alert('Pedido limpiado.');
+        function removeItemFromOrder(index, category) {
+            const targetOrder = getOrderList(category);
+            if (index > -1 && index < targetOrder.length) {
+                targetOrder.splice(index, 1);
+                renderActiveOrder();
             }
         }
 
-        function finalizeOrder() {
-            if (currentOrder.length === 0) {
-                alert('El pedido está vacío. Por favor, añada productos antes de finalizar.');
+        function clearCurrentOrder() {
+            if (confirm(`¿Estás seguro de que quieres limpiar todo el pedido de ${currentActiveOrder.toUpperCase()}?`)) {
+                const targetOrder = getOrderList(currentActiveOrder);
+                targetOrder.length = 0; // Vaciar el array
+                renderActiveOrder();
+                alert(`Pedido de ${currentActiveOrder.toUpperCase()} limpiado.`);
+            }
+        }
+
+        // --- Funciones de Impresión de Ticket ---
+        function printTicket() {
+            const orderToPrint = getOrderList(currentActiveOrder);
+            if (orderToPrint.length === 0) {
+                alert(`El pedido de ${currentActiveOrder.toUpperCase()} está vacío. No se puede imprimir un ticket.`);
                 return;
             }
-            if (confirm('¿Desea finalizar este pedido?')) {
-                // Aquí podrías añadir lógica para enviar el pedido a un servidor,
-                // generar una factura, etc. Por ahora, solo lo mostraremos en un alert.
-                let orderSummary = "Pedido Finalizado:\n\n";
-                currentOrder.forEach(item => {
-                    orderSummary += `- ${item.Producto} x ${item.quantity} ($${item.pricePerUnit.toFixed(2)} c/u) = $${(item.quantity * item.pricePerUnit).toFixed(2)}\n`;
-                });
-                orderSummary += `\nTotal General: $${parseFloat(orderTotalDisplay.textContent.replace('Total: $', '')).toFixed(2)}`;
-                alert(orderSummary);
 
-                // Opcional: Limpiar el pedido después de finalizarlo
-                currentOrder = [];
-                renderOrder();
-            }
+            let ticketContent = `<h1>${currentActiveOrder.toUpperCase()}</h1>`;
+            ticketContent += '<ul>';
+            let totalGeneral = 0;
+
+            orderToPrint.forEach(item => {
+                const itemTotal = item.precioFinal * item.quantity;
+                totalGeneral += itemTotal;
+
+                ticketContent += `
+                    <li>
+                        <span class="ticket-item-name">${item.Producto}</span>
+                        <span class="ticket-item-qty">Cant: ${item.quantity}</span>
+                        <span class="ticket-item-prices">
+                            <span>Precio base: ${formatCurrency(item.PrecioLista)}</span>
+                            <span>Aumento: ${item.PorcentajeAumento}%</span>
+                            <span>Precio final: ${formatCurrency(item.precioFinal)}</span>
+                        </span>
+                        <span class="ticket-item-prices">
+                             Total línea: ${formatCurrency(itemTotal)}
+                        </span>
+                    </li>
+                `;
+            });
+            ticketContent += '</ul>';
+            ticketContent += `<div class="ticket-total">TOTAL: ${formatCurrency(totalGeneral)}</div>`;
+
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write('<html><head><title>Ticket de Pedido</title>');
+            printWindow.document.write('<style>');
+            printWindow.document.write(`
+                body { font-family: monospace; font-size: 14pt; margin: 0; padding: 10mm; box-sizing: border-box; }
+                h1 { text-align: center; font-size: 1.5em; margin-bottom: 20px; font-weight: bold; }
+                ul { list-style: none; padding: 0; margin: 0; }
+                li { margin-bottom: 15px; border-bottom: 1px dashed #ccc; padding-bottom: 5px; }
+                .ticket-item-name { display: block; font-weight: bold; font-size: 1.1em; margin-bottom: 5px; }
+                .ticket-item-qty { display: block; margin-bottom: 5px; }
+                .ticket-item-prices { display: flex; justify-content: space-between; flex-wrap: wrap; font-size: 0.9em; }
+                .ticket-item-prices span { flex: 1 1 45%; margin-right: 10px; }
+                .ticket-item-prices span:last-child { margin-right: 0; text-align: right; }
+                .ticket-total { border-top: 2px dashed black; padding-top: 10px; margin-top: 20px; text-align: right; font-size: 1.5em; font-weight: bold; }
+            `);
+            printWindow.document.write('</style>');
+            printWindow.document.write('</head><body>');
+            printWindow.document.write(ticketContent);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
         }
 
 
-        // --- Event Listeners ---
+        // --- Funciones de Cálculo Rápido de Precios ---
 
+        function addToQuickCheck(product) {
+            const existingItem = quickCheckItems.find(item => item.id === product.id);
+            const precioFinal = calculateFinalPrice(product.PrecioLista, product.PorcentajeAumento);
+
+            if (existingItem) {
+                existingItem.quantity++;
+                existingItem.totalPrice = existingItem.quantity * precioFinal;
+            } else {
+                quickCheckItems.push({
+                    id: product.id,
+                    name: product.Producto,
+                    unitDetails: `${product.Cantidad} ${product.Unidad}`,
+                    pricePerUnit: precioFinal,
+                    quantity: 1,
+                    totalPrice: precioFinal
+                });
+            }
+            renderQuickCheck();
+        }
+
+        function renderQuickCheck() {
+            quickPriceCheckList.innerHTML = '';
+            let totalQuickCheck = 0;
+
+            if (quickCheckItems.length === 0) {
+                quickPriceCheckList.innerHTML = '<li>No hay productos en el cálculo rápido.</li>';
+            } else {
+                quickCheckItems.forEach((item, index) => {
+                    totalQuickCheck += item.totalPrice;
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `
+                        <span>${item.name} (${item.unitDetails})</span>
+                        <span>Cant: ${item.quantity}</span>
+                        <span>Precio/U: ${formatCurrency(item.pricePerUnit)}</span>
+                        <span>Total: ${formatCurrency(item.totalPrice)}
+                            <button class="quick-check-remove" data-index="${index}">X</button>
+                        </span>
+                    `;
+                    quickPriceCheckList.appendChild(listItem);
+                });
+            }
+            quickCheckTotalDisplay.textContent = `Total: ${formatCurrency(totalQuickCheck)}`;
+            addQuickCheckRemoveListeners();
+        }
+
+        function addQuickCheckRemoveListeners() {
+            document.querySelectorAll('.quick-check-remove').forEach(button => {
+                button.onclick = (event) => {
+                    const indexToRemove = parseInt(event.target.dataset.index);
+                    if (indexToRemove > -1 && indexToRemove < quickCheckItems.length) {
+                        quickCheckItems.splice(indexToRemove, 1);
+                        renderQuickCheck();
+                    }
+                };
+            });
+        }
+
+
+        // --- Event Listeners Globales ---
         searchBar.addEventListener('keyup', (event) => {
             renderProducts(event.target.value);
         });
 
         increasePriceBtn.addEventListener('click', () => {
-            if (!is_admin_mode) {
-                alert('Necesitas estar en modo administrador para aumentar precios.');
+            if (!is_dev_mode) {
+                alert('Necesitas estar en Modo Desarrollador para aplicar aumentos de precios.');
                 return;
             }
-            const percentage = parseFloat(calcInput.value);
+            const percentage = parseFloat(globalPercentageInput.value);
             if (isNaN(percentage) || percentage < 0 || percentage > 100) {
                 alert('Por favor, ingresa un porcentaje válido entre 0 y 100.');
                 return;
@@ -699,7 +1013,7 @@
 
             if (confirm(`¿Estás seguro de que quieres aumentar TODOS los precios en un ${percentage}%?`)) {
                 products.forEach(product => {
-                    if (product.PrecioLista > 0) { // Solo aumentar si el precio lista es positivo
+                    if (product.PrecioLista > 0) {
                         product.PorcentajeAumento = percentage;
                     }
                 });
@@ -710,49 +1024,47 @@
         });
 
         resetPricesBtn.addEventListener('click', () => {
-            if (!is_admin_mode) {
-                alert('Necesitas estar en modo administrador para reiniciar precios.');
+            if (!is_dev_mode) {
+                alert('Necesitas estar en Modo Desarrollador para reiniciar precios.');
                 return;
             }
             if (confirm('¿Estás seguro de que quieres reiniciar TODOS los precios a sus valores originales (quitar aumentos)?')) {
-                products = JSON.parse(JSON.stringify(defaultProducts)); // Restaurar desde la copia limpia
+                // Restaurar desde la copia limpia de defaultProducts, asignando nuevos IDs si se requiere.
+                products = defaultProducts.map(p => ({ ...p })); // Copia profunda
                 saveProducts();
                 renderProducts();
                 alert('Precios reiniciados a sus valores originales.');
             }
         });
 
-        adminModeToggleBtn.addEventListener('click', () => {
-            is_admin_mode = !is_admin_mode;
-            if (is_admin_mode) {
-                alert('Modo Administrador ACTIVADO. Ahora puedes ver precios de lista y modificar aumentos. (Esta es una simulación, no es un inicio de sesión seguro)');
-                // Opcional: pedir una contraseña simple (no segura)
-                // const password = prompt("Ingresa la contraseña de administrador:");
-                // if (password === "admin123") { // Contraseña de ejemplo, CAMBIAR EN PRODUCCIÓN
-                //     is_admin_mode = true;
-                //     alert("Modo Administrador ACTIVADO.");
-                // } else {
-                //     is_admin_mode = false;
-                //     alert("Contraseña incorrecta. Modo Administrador NO ACTIVADO.");
-                // }
-            } else {
-                alert('Modo Administrador DESACTIVADO. La información sensible está oculta.');
+        // Tab selection for orders
+        orderTabsContainer.addEventListener('click', (event) => {
+            if (event.target.tagName === 'BUTTON') {
+                document.querySelectorAll('#order-tabs button').forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+                currentActiveOrder = event.target.id.replace('tab-', '');
+                renderActiveOrder();
             }
-            renderProducts(searchBar.value); // Volver a renderizar para aplicar cambios de visibilidad
         });
 
-        clearOrderBtn.addEventListener('click', clearOrder);
-        finalizeOrderBtn.addEventListener('click', finalizeOrder);
+        clearCurrentOrderBtn.addEventListener('click', clearCurrentOrder);
+        printTicketBtn.addEventListener('click', printTicket);
 
 
-        // Renderizar los productos y el pedido al cargar la página
+        // --- Inicialización al cargar la página ---
         document.addEventListener('DOMContentLoaded', () => {
-            loadProducts(); // Cargar los productos al inicio
-            renderProducts(); // Renderizar la tabla con los productos cargados
-            renderOrder(); // Renderizar el pedido (vacío al inicio)
-            resetCalculator(); // Inicializar la calculadora
+            loadProducts();
+            renderProducts();
+            renderActiveOrder(); // Renderiza la lista de pedidos activa por defecto (genéricos)
+            renderQuickCheck(); // Inicializa la vista de cálculo rápido
+
+            // Asegurar que la pestaña de Genéricos esté activa por defecto en modo desarrollador
+            if (is_dev_mode) {
+                tabGenericos.classList.add('active');
+            }
         });
 
     </script>
 </body>
 </html>
+```
