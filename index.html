@@ -1,4 +1,29 @@
-...
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Farmacia Pintar</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    .producto { margin: 10px 0; cursor: pointer; }
+    .botones-sector button { margin-right: 5px; }
+    .carrito { margin-top: 20px; border-top: 1px solid #000; padding-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <h1>Productos</h1>
+  <div id="productos"></div>
+
+  <div class="carrito"></div>
+
+  <script>
+    const productos = [
+      { nombre: 'ACICLOVIR 800 x5', precio: 6400 },
+      { nombre: 'AC. FOLICO 1 x10', precio: 2500 },
+      { nombre: 'AC. FOLICO 5 x10', precio: 4000 },
+      { nombre: 'TEXTO DE PRUEBA', precio: 3500 }
+    ];
 
     let carrito = [];
     let genericos = [];
@@ -52,7 +77,6 @@
       } else {
         carrito.push({ ...productoFinal, sector });
       }
-      mostrarCarrito();
     }
 
     function mostrarPedidoSector(sector) {
@@ -149,7 +173,6 @@
       win.print();
     }
 
-    // Agregar botón PEDIDO al lado del carrito
     window.addEventListener('load', () => {
       const carritoDiv = document.querySelector('.carrito');
       const pedidoBoton = document.createElement('button');
@@ -166,4 +189,9 @@
         pedidoBoton.remove();
       };
       carritoDiv.appendChild(pedidoBoton);
+      cargarProductos();
     });
+  </script>
+
+</body>
+</html>
