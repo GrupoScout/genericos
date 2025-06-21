@@ -7,22 +7,31 @@
 </head>
 <body>
   <div id="login-modal">
-    <form id="login-form">
-      <label for="email">Email:</label>
-      <input type="email" id="email" required>
-      <label for="password">Contraseña:</label>
-      <input type="password" id="password" required>
-      <button type="submit">Iniciar Sesión</button>
-    </form>
+    <div class="login-container">
+      <h2>FARMACIA PINTAR</h2>
+      <form id="login-form">
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
   </div>
 
   <div id="main-content" style="display: none;">
-    <h1>Productos</h1>
+    <header>
+      <button id="toggle-cart">Carrito</button>
+      <button id="toggle-orders">Pedidos</button>
+      <button id="edit-products">Editar Productos</button>
+    </header>
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Buscar producto...">
+    </div>
     <div id="productos"></div>
-    <div class="carrito"></div>
+    <div class="carrito" style="display: none;"></div>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
