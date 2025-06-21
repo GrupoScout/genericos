@@ -2,14 +2,25 @@ let productos = [];
 let carrito = [];
 let modoDesarrollador = false;
 
-// Cargar productos desde el archivo JSON
-fetch('productos.json')
-  .then(response => response.json())
-  .then(data => {
-    productos = data;
+// Cargar productos desde localStorage o desde el archivo JSON si no hay datos en localStorage
+function cargarProductosIniciales() {
+  const productosGuardados = localStorage.getItem('productos');
+  if (productosGuardados) {
+    productos = JSON.parse(productosGuardados);
     cargarProductos();
-  })
-  .catch(error => console.error('Error al cargar los productos:', error));
+  } else {
+    fetch('productos.json')
+      .then(response => response.json())
+      .then(data => {
+        productos = data;
+        localStorage.setItem('productos', JSON.stringify(productos));
+        cargarProductos();
+      })
+      .catch(error => console.error('Error al cargar los productos:', error));
+  }
+}
+
+document.addEventListener('DOMContentLoaded', cargarProductosIniciales);
 
 document.getElementById('login-form').addEventListener('submit', function(event) {
   event.preventDefault();
@@ -80,6 +91,10 @@ function editarProducto(i) {
     productos[i].Producto = nombre;
     productos[i].PrecioLista = parseFloat(precio);
     productos[i].PorcentajeAumento = parseFloat(porcentaje) || 0;
+
+    // Guardar los productos actualizados en localStorage
+    localStorage.setItem('productos', JSON.stringify(productos));
+
     cargarProductos();
   }
 }
