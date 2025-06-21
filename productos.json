@@ -1,7 +1,1571 @@
 [
-  { "nombre": "ACICLOVIR 800 x5", "precio": 6400 },
-  { "nombre": "AC. FOLICO 1 x10", "precio": 2500 },
-  { "nombre": "AC. FOLICO 5 x10", "precio": 4000 },
-  { "nombre": "TEXTO DE PRUEBA", "precio": 3500 }
-  // Agrega aquí el resto de tus productos
+  {
+    "Producto": "AC FOLICO 5 x10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 4000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ACENOCUMAROL 4MG x10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 6400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ACICLOVIR 800 x5",
+    "Cantidad": 5,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 6400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AGUA OXIGENADA 10 100cc",
+    "Cantidad": 100,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AGUA OXIGENADA 10 250cc",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "D",
+    "PrecioLista": 980.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AGUA OXIGENADA 10 500cc",
+    "Cantidad": 500,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 1350.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "OXIGENADA TO 1litro AGUA",
+    "Cantidad": 1,
+    "Unidad": "litro",
+    "Oferta": "",
+    "PrecioLista": 0.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ALCOHOL 250CC",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 1400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ALCOHOL 500CC",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 2200.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ALCOHOL 1 LITRO",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "D",
+    "PrecioLista": 3800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ALIKAL x2",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AMIODORONA 10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 0.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AMITRIPTILINA 25 X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 3400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AMLODIPINA 10MG X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 0.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AMLODIPINA 5MG X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 3100.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ATORVASTATINA 20 X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 3600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ATORVASTATINA 40 X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 4300.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AZITROMICINA 500MG X3",
+    "Cantidad": 3,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 4900.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "BAYASPIRINA X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 2800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "BUSCAPINA COMPOSITUM X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 2000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CAJA DE AGUJAS",
+    "Cantidad": 1,
+    "Unidad": "caja",
+    "Oferta": "0",
+    "PrecioLista": 3000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CAJA DE JERINGAS 1ML",
+    "Cantidad": 1,
+    "Unidad": "caja",
+    "Oferta": "0",
+    "PrecioLista": 3000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CAJA DE JERINGAS 3ML",
+    "Cantidad": 1,
+    "Unidad": "caja",
+    "Oferta": "0",
+    "PrecioLista": 3000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CAJA DE JERINGAS 5ML",
+    "Cantidad": 1,
+    "Unidad": "caja",
+    "Oferta": "0",
+    "PrecioLista": 3000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CAJA DE JERINGAS 10ML",
+    "Cantidad": 1,
+    "Unidad": "caja",
+    "Oferta": "0",
+    "PrecioLista": 3000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CANDESARTAN 16 X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 4700.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CANDESARTAN 8 X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 3800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CAPTOPRIL 25 X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 1300.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CARVEDILOL 25 X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 4500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CARVEDILOL 6.25 X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 3400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CEFALEXINA 500 X14",
+    "Cantidad": 14,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 6400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CIPROFIBRATO 100 X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 6200.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CIPROFLOXACINA 500 X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 4900.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CLONAZEDIN 0.5 X30 (RECETA ARCHIVADA)",
+    "Cantidad": 30,
+    "Unidad": "comprimidos",
+    "Oferta": "",
+    "PrecioLista": 3950.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CLONAZEDIN 1MG X30 (RECETA ARCHIVADA)",
+    "Cantidad": 30,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 6400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CLONAZEDIN 2MG X30 (RECETA ARCHIVADA)",
+    "Cantidad": 30,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 7600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "DESCONOCIDO 1 (Línea 3 del PDF, similar a un genérico con receta)",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "",
+    "PrecioLista": 3800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "DESCONOCIDO 2 (Línea 4 del PDF, sin precio definido)",
+    "Cantidad": 10,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 0.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "DESLORATADINA X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 3800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "DIAZEPAM 10 X20 (RECETA ARCHIVADA)",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 3200.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "DICLOFENAC 50 X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 2800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "DIPIRONA 500 X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 2100.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ENO SOBRE",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ESOMEPRAZOL 20 X14",
+    "Cantidad": 14,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 7800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ESOMEPRAZOL 40 X14",
+    "Cantidad": 14,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 8900.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "FORTEGRIP X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 2500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "FUROSEMIDA 40 X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 1800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "IBUPROFENO 400 X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 1500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "IBUPROFENO 600 X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 2100.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "KETOROLAC 10 X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 3200.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "KETOROLAC 20 X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 4400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LOSARTAN 100 X30",
+    "Cantidad": 30,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 6000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LOSARTAN 50 X30",
+    "Cantidad": 30,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 4600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LOSARTAN 50 X15",
+    "Cantidad": 15,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 2500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LOVASTATINA 20 X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 4900.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "MEDICAMENTO DESCONOCIDO 1",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 0.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "METFORMINA 500 X30",
+    "Cantidad": 30,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 2600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "METFORMINA 850 X30",
+    "Cantidad": 30,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 3100.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "METRONIDAZOL 500 X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 3800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "OMEPRAZOL 20 X14",
+    "Cantidad": 14,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 3500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PACK IBUPROFENO",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PACK ALCOHOL",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 8000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PACK ALCOHOL + AGUA OXIGENADA",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 8000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PARACETAMOL 500 X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 1500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PARACETAMOL 1GR X10",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 2000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PASTA LASSAR GRANDE",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 5600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PASTA LASSAR CHICA",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 3500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PASTA DENTAL",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 2500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PASTA DENTAL CHICA",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 1500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PASTA DENTAL GRANDE",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 2500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PERVINOX CHICO",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 2500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PERVINEX GRANDE",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 4000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PIRACETAM 800 X20",
+    "Cantidad": 20,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 5000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PROPRANOLOL 10 X30",
+    "Cantidad": 30,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 2500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PROPRANOLOL 40 X30",
+    "Cantidad": 30,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 3800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "SOLUCION FISIOLOGICA 500CC",
+    "Cantidad": 500,
+    "Unidad": "mililitros",
+    "Oferta": "0",
+    "PrecioLista": 1500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "TIRAS REACTIVAS X50",
+    "Cantidad": 50,
+    "Unidad": "tiras",
+    "Oferta": "0",
+    "PrecioLista": 12000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "TELMISARTAN 40 X30",
+    "Cantidad": 30,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 6400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "TELMISARTAN 80 X30",
+    "Cantidad": 30,
+    "Unidad": "comprimidos",
+    "Oferta": "0",
+    "PrecioLista": 7600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "SERTRALINA 100 (UNICAMENTE CON RECETA)",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "",
+    "PrecioLista": 7200.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "TRAMADOL 50 (UNICAMENTE CON RECETA)",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "",
+    "PrecioLista": 4250.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ZOLPIDEM 10 (UNICAMENTE CON RECETA)",
+    "Cantidad": 10,
+    "Unidad": "comprimidos",
+    "Oferta": "",
+    "PrecioLista": 3620.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ABOCATH (catéter)",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 1500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ACEITE DE ALMENDRAS",
+    "Cantidad": 0,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 300.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ACEITE DE RICINO",
+    "Cantidad": 0,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 1900.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ACEITE DE COCO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 250.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ACIDO BORICO 25GR",
+    "Cantidad": 25,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 480.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AGUA D'ALIBOUR",
+    "Cantidad": 0,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 2500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AGUJAS BUTTERFLY N21",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AGUJAS BUTTERFLY N23",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AGUJAS BUTTERFLY N25",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AGUJAS DE JERINGA",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 70.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ALCANFOR PASTILLA",
+    "Cantidad": 0,
+    "Unidad": "pastilla",
+    "Oferta": "",
+    "PrecioLista": 1800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ALCANFOR PVO 3GR",
+    "Cantidad": 3,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 0.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ANTEOJOS",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 7000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CREMA ANTIBIÓTICA ANTIALERGICA",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 5800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ANTIMICOTICA SPRY 100CC",
+    "Cantidad": 100,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 13500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ANTIMICOTICA SPRY 60CC",
+    "Cantidad": 60,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 7000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AMOXICILINA POR UNIDAD",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 230.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "ANTIMICOTICA CREMA",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 5000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "AZUFRE EN POLVO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 750.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "BENZOATO DE BENCILO +PERMETRINA X100 (ANTI sarna)",
+    "Cantidad": 100,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 10000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "BENZOATO DE BENCILO +PERMETRINA X50 (ANTI sarna)",
+    "Cantidad": 50,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 5000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "BICARBONATO 250GR (FRASCO)",
+    "Cantidad": 250,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 0.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "BICARBONATO SOBRE",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 450.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "BISTURI",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 250.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "BORATO DE SODIO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "BORAX 25GR",
+    "Cantidad": 25,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CASTAÑA DE INDIA UNIDAD",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CINTA HIPOALERGENICA ANGOSTA",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 1150.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CINTA HIPOALERGENICA ANCHA",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 2900.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CINTA HIPOALERGENICA CON CORTADOR",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 3700.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CINTA TELA ANGOSTA 2,5X4M",
+    "Cantidad": 4,
+    "Unidad": "metros",
+    "Oferta": "",
+    "PrecioLista": 2800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CINTA TELA ANGOSTA 5X4M",
+    "Cantidad": 4,
+    "Unidad": "metros",
+    "Oferta": "",
+    "PrecioLista": 4500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CLORATO DE POTASIO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 0.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CLORURO DE MAGNESIO 30GR",
+    "Cantidad": 30,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 2600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CREMA DE CALENDULA X 200GR",
+    "Cantidad": 200,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 16900.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CREMA DE SABAÑONES",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 2450.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CREMA HIDRATANTE 100GR",
+    "Cantidad": 100,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 6000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CREMA PARA MANCHAS",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 2500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CREMA PARA PSORIASISX 50 GRS.",
+    "Cantidad": 50,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 7600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CREMA PARA PSORIASIS X 100 GRS",
+    "Cantidad": 100,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 13600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CREMA PARA ROSACEA",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 0.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CREMA SIMILAR A LA Vick VapoRu",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 3950.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "CREMA SIMILAR A LA MACRIL",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 6800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "DIADERMINA",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 3000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "DICLOFENAC POR UNIDAD",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 170.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "DICLOFENAC CREMA",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 4950.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "DICLOFENAC + PRIDINOL UNIDAD",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 200.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "DICLOFENAC POTASICO UNIDAD",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 270.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "FRASCO ESTERIL",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "FRASCO ORINA 24HS",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 8000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "FORMOL EN FRASCO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 1900.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GASA EN PAQUETE (10X10,20X20,30X30)",
+    "Cantidad": 10,
+    "Unidad": "unidades",
+    "Oferta": "0",
+    "PrecioLista": 3950.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GASA EN SOBRE (10X10)",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 430.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GASA IODOFORMADA",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 20000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GUANTES DE LATEX PAR",
+    "Cantidad": 1,
+    "Unidad": "par",
+    "Oferta": "",
+    "PrecioLista": 220.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GUANTES DE LATEX CAJA",
+    "Cantidad": 1,
+    "Unidad": "caja",
+    "Oferta": "",
+    "PrecioLista": 8700.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GUANTES DE NITRILO M POR CAJA",
+    "Cantidad": 0,
+    "Unidad": "caja",
+    "Oferta": "",
+    "PrecioLista": 9300.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GUANTE DE NITRILO M PAR",
+    "Cantidad": 1,
+    "Unidad": "par",
+    "Oferta": "",
+    "PrecioLista": 200.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GUANTES NITRILO NEGRO REFORZADO X CAJA",
+    "Cantidad": 0,
+    "Unidad": "caja",
+    "Oferta": "",
+    "PrecioLista": 14200.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GUANTE DE NITRILO G PAR",
+    "Cantidad": 1,
+    "Unidad": "par",
+    "Oferta": "",
+    "PrecioLista": 300.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GLUCOSA 100GR",
+    "Cantidad": 100,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 6100.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GLUCOSA 50GR",
+    "Cantidad": 50,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 4100.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GLUCOSA 75GR",
+    "Cantidad": 75,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 5100.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "GOTAS HEPATICAS",
+    "Cantidad": 0,
+    "Unidad": "gotas",
+    "Oferta": "",
+    "PrecioLista": 5800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "IODOPOVIDONA JABONOSA x 100CC",
+    "Cantidad": 100,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 5500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "IODOPOVIDONA SOLUCION 100CC",
+    "Cantidad": 100,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 5200.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "IODOPOVIDONA SOLUCION 60CC",
+    "Cantidad": 60,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 3500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 1",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 1,25",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 1,50",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 1.75",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 2",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 2,25",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 2,50",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 2,75",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 3",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 3,25",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 3,50",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 3.75",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "LENTE 4",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 6500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "IVERMECTINA UNIDAD",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "NISTATINA EN CREMA",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 5200.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "OMEPRAZOL 10",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 0.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "OMEPRAZOL 20 UNIDAD",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 250.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "OMEPRAZOL 40 MG.UNIDAD",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PASTA LASSAR",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 4400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PEINE FINO PLASTICO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 300.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PEINE FINO ACERO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 10000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PERMETRINA 5% X100",
+    "Cantidad": 100,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 8900.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PIROXICAM POR UNIDAD",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 200.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PERMETRINA 5% X50",
+    "Cantidad": 50,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 5000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "TULIPAN PRESERVATIVO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 2000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "PRIME PRESERVATIVO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 3500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "SAL INGLESA (SULFATO DE MAGNESIO)",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 600.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "SOLUCION FISIOLOGICA CHICA",
+    "Cantidad": 0,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 650.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "SOLUCION FISIOLOGICA GRANDE",
+    "Cantidad": 0,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 1100.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "SULFATIAZOL POLVO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 2350.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "SULFATO DE SODIO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 0.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "TALCO MENTOLADO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 3200.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "TINT DE IODO/ALC BORICADO/ALC IODADO",
+    "Cantidad": 0,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 2500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "TRIPLE JARABE",
+    "Cantidad": 0,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 5900.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VASELINA LIQUIDA CHICA (125CM³)",
+    "Cantidad": 125,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 2350.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VASELINA LIQUIDA GRANDE (1000CMP)",
+    "Cantidad": 1000,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 14000.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VASELINA LIQUIDA INTERMEDIA (250CM³)",
+    "Cantidad": 250,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 4350.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VASELINA LIQUIDA MEDIANA (500CMP)",
+    "Cantidad": 500,
+    "Unidad": "mililitros",
+    "Oferta": "",
+    "PrecioLista": 7500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VASELINA SOLIDA 100GR",
+    "Cantidad": 100,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 6800.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VASELINA SOLIDA 250GR",
+    "Cantidad": 250,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 17500.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VASELINA SOLIDA 30GR",
+    "Cantidad": 30,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 3100.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VASELINA SOLIDA 50GR",
+    "Cantidad": 50,
+    "Unidad": "gramos",
+    "Oferta": "",
+    "PrecioLista": 4700.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VENDA NRO 5 3 METROS",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 400.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VENDA NRO 7 3 METROS",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "",
+    "PrecioLista": 570.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VENDA NRO 10 3 METROS",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 850.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VENDA NRO 15 3 METROS",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 1350.00,
+    "PorcentajeAumento": 0
+  },
+  {
+    "Producto": "VENDA NRO 20 3 METROS",
+    "Cantidad": 1,
+    "Unidad": "unidad",
+    "Oferta": "0",
+    "PrecioLista": 1700.00,
+    "PorcentajeAumento": 0
+  }
 ]
+
