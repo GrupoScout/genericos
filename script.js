@@ -1,8 +1,9 @@
 
-  let productos = [];
+   let productos = [];
 let carrito = [];
 let modoDesarrollador = false;
 
+// Cargar productos desde el archivo JSON
 fetch('productos.json')
   .then(response => response.json())
   .then(data => {
