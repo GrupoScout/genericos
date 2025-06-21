@@ -1,0 +1,7 @@
+[
+  { "nombre": "ACICLOVIR 800 x5", "precio": 6400 },
+  { "nombre": "AC. FOLICO 1 x10", "precio": 2500 },
+  { "nombre": "AC. FOLICO 5 x10", "precio": 4000 },
+  { "nombre": "TEXTO DE PRUEBA", "precio": 3500 }
+  // Agrega aquí el resto de tus productos
+]
