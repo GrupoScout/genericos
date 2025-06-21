@@ -1,4 +1,5 @@
-let productos = [];
+
+ let productos = [];
 let carrito = [];
 let genericos = [];
 let insumos = [];
@@ -32,7 +33,7 @@ function cargarProductos() {
   productos.forEach((prod, i) => {
     const div = document.createElement('div');
     div.className = 'producto';
-    div.innerHTML = `<strong>${prod.nombre}</strong> - $${prod.precio}`;
+    div.innerHTML = `<strong>${prod.Producto}</strong> - $${prod.PrecioLista}`;
     div.onclick = () => mostrarOpcionesSector(i, div);
     contenedor.appendChild(div);
   });
@@ -54,10 +55,10 @@ function agregarAlCarrito(i, sector) {
   const prod = productos[i];
   const porcentaje = prompt("¿Porcentaje de aumento aplicado? (solo número, sin %)", "0");
   const aumento = parseFloat(porcentaje);
-  const precioFinal = Math.round(prod.precio * (1 + aumento / 100));
+  const precioFinal = Math.round(prod.PrecioLista * (1 + aumento / 100));
   const productoFinal = {
-    nombre: prod.nombre,
-    precio: prod.precio,
+    nombre: prod.Producto,
+    precio: prod.PrecioLista,
     porcentaje: aumento,
     final: precioFinal,
     cantidad: 1
@@ -67,7 +68,7 @@ function agregarAlCarrito(i, sector) {
   else if (sector === 'Insumos') insumos.push(productoFinal);
   else if (sector === 'Preparados') preparados.push(productoFinal);
 
-  const item = carrito.find(p => p.nombre === prod.nombre && p.sector === sector);
+  const item = carrito.find(p => p.nombre === prod.Producto && p.sector === sector);
   if (item) {
     item.cantidad++;
   } else {
