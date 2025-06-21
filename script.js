@@ -1,5 +1,4 @@
-
-   let productos = [];
+let productos = [];
 let carrito = [];
 let modoDesarrollador = false;
 
@@ -26,13 +25,20 @@ document.getElementById('login-form').addEventListener('submit', function(event)
 });
 
 document.getElementById('developer-mode').addEventListener('click', function() {
-  const password = prompt("Introduce la contraseña para entrar al modo desarrollador:");
-  if (password === 'Farmaco00') {
-    modoDesarrollador = true;
-    alert('Modo desarrollador activado');
+  if (modoDesarrollador) {
+    modoDesarrollador = false;
+    document.getElementById('developer-mode').textContent = 'Modo Desarrollador';
     cargarProductos();
   } else {
-    alert('Contraseña incorrecta');
+    const password = prompt("Introduce la contraseña para entrar al modo desarrollador:");
+    if (password === 'Farmaco00') {
+      modoDesarrollador = true;
+      document.getElementById('developer-mode').textContent = 'Salir del Modo Desarrollador';
+      alert('Modo desarrollador activado');
+      cargarProductos();
+    } else {
+      alert('Contraseña incorrecta');
+    }
   }
 });
 
@@ -57,6 +63,7 @@ function cargarProductos(productsToLoad = productos) {
         <button onclick="editarProducto(${i})">Editar</button>
       ` : `
         <button onclick="agregarAlCarrito(${i})">Agregar al Carrito</button>
+        <button onclick="agregarAPedido(${i})">Agregar a Pedido</button>
       `}
     `;
     contenedor.appendChild(div);
@@ -96,6 +103,12 @@ function agregarAlCarrito(i) {
   alert(`Producto "${prod.Producto}" agregado al carrito.`);
 }
 
+function agregarAPedido(i) {
+  const prod = productos[i];
+  alert(`Producto "${prod.Producto}" agregado al pedido.`);
+  // Aquí puedes agregar la lógica para manejar el pedido
+}
+
 document.getElementById('toggle-cart').addEventListener('click', function() {
   const carritoDiv = document.querySelector('.carrito');
   carritoDiv.style.display = carritoDiv.style.display === 'none' ? 'block' : 'none';
@@ -116,4 +129,3 @@ function eliminarProductoCarrito(index) {
   carrito.splice(index, 1);
   mostrarCarrito();
 }
-
