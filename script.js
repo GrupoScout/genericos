@@ -1,11 +1,8 @@
 
- let productos = [];
+  let productos = [];
 let carrito = [];
-let genericos = [];
-let insumos = [];
-let preparados = [];
+let modoDesarrollador = false;
 
-// Cargar productos desde el archivo JSON
 fetch('productos.json')
   .then(response => response.json())
   .then(data => {
@@ -27,162 +24,95 @@ document.getElementById('login-form').addEventListener('submit', function(event)
   }
 });
 
-function cargarProductos() {
+document.getElementById('developer-mode').addEventListener('click', function() {
+  const password = prompt("Introduce la contraseña para entrar al modo desarrollador:");
+  if (password === 'Farmaco00') {
+    modoDesarrollador = true;
+    alert('Modo desarrollador activado');
+    cargarProductos();
+  } else {
+    alert('Contraseña incorrecta');
+  }
+});
+
+document.getElementById('search-bar').addEventListener('input', function() {
+  const searchTerm = this.value.toLowerCase();
+  const filteredProducts = productos.filter(product =>
+    product.Producto.toLowerCase().includes(searchTerm)
+  );
+  cargarProductos(filteredProducts);
+});
+
+function cargarProductos(productsToLoad = productos) {
   const contenedor = document.getElementById('productos');
   contenedor.innerHTML = '';
-  productos.forEach((prod, i) => {
+  productsToLoad.forEach((prod, i) => {
+    const precioConAumento = prod.PorcentajeAumento ? prod.PrecioLista * (1 + prod.PorcentajeAumento / 100) : prod.PrecioLista;
     const div = document.createElement('div');
     div.className = 'producto';
-    div.innerHTML = `<strong>${prod.Producto}</strong> - $${prod.PrecioLista}`;
-    div.onclick = () => mostrarOpcionesSector(i, div);
+    div.innerHTML = `
+      <strong>${prod.Producto}</strong> - $${precioConAumento.toFixed(2)}
+      ${modoDesarrollador ? `
+        <button onclick="editarProducto(${i})">Editar</button>
+      ` : `
+        <button onclick="agregarAlCarrito(${i})">Agregar al Carrito</button>
+      `}
+    `;
     contenedor.appendChild(div);
   });
 }
 
-function mostrarOpcionesSector(i, div) {
-  const opciones = document.createElement('div');
-  opciones.className = 'botones-sector';
-  opciones.innerHTML = `
-    <button onclick="agregarAlCarrito(${i}, 'Genéricos'); this.parentElement.remove();">GENÉRICOS</button>
-    <button onclick="agregarAlCarrito(${i}, 'Insumos'); this.parentElement.remove();">INSUMOS</button>
-    <button onclick="agregarAlCarrito(${i}, 'Preparados'); this.parentElement.remove();">PREPARADOS</button>
-  `;
-  div.appendChild(opciones);
-  div.onclick = null;
-}
-
-function agregarAlCarrito(i, sector) {
+function editarProducto(i) {
   const prod = productos[i];
-  const porcentaje = prompt("¿Porcentaje de aumento aplicado? (solo número, sin %)", "0");
-  const aumento = parseFloat(porcentaje);
-  const precioFinal = Math.round(prod.PrecioLista * (1 + aumento / 100));
-  const productoFinal = {
-    nombre: prod.Producto,
-    precio: prod.PrecioLista,
-    porcentaje: aumento,
-    final: precioFinal,
-    cantidad: 1
-  };
+  const nombre = prompt("Nombre del producto:", prod.Producto);
+  const precio = prompt("Precio del producto:", prod.PrecioLista);
+  const porcentaje = prompt("Porcentaje de aumento:", prod.PorcentajeAumento);
 
-  if (sector === 'Genéricos') genericos.push(productoFinal);
-  else if (sector === 'Insumos') insumos.push(productoFinal);
-  else if (sector === 'Preparados') preparados.push(productoFinal);
-
-  const item = carrito.find(p => p.nombre === prod.Producto && p.sector === sector);
-  if (item) {
-    item.cantidad++;
-  } else {
-    carrito.push({ ...productoFinal, sector });
+  if (nombre && precio) {
+    productos[i].Producto = nombre;
+    productos[i].PrecioLista = parseFloat(precio);
+    productos[i].PorcentajeAumento = parseFloat(porcentaje) || 0;
+    cargarProductos();
   }
 }
 
-function mostrarPedidoSector(sector) {
-  let lista = [];
-  if (sector === 'Genéricos') lista = genericos;
-  else if (sector === 'Insumos') lista = insumos;
-  else if (sector === 'Preparados') lista = preparados;
+function agregarAlCarrito(i) {
+  const prod = productos[i];
+  const precioConAumento = prod.PorcentajeAumento ? prod.PrecioLista * (1 + prod.PorcentajeAumento / 100) : prod.PrecioLista;
 
+  const productoFinal = {
+    nombre: prod.Producto,
+    precio: precioConAumento,
+    cantidad: 1
+  };
+
+  const item = carrito.find(p => p.nombre === prod.Producto);
+  if (item) {
+    item.cantidad++;
+  } else {
+    carrito.push(productoFinal);
+  }
+  alert(`Producto "${prod.Producto}" agregado al carrito.`);
+}
+
+document.getElementById('toggle-cart').addEventListener('click', function() {
+  const carritoDiv = document.querySelector('.carrito');
+  carritoDiv.style.display = carritoDiv.style.display === 'none' ? 'block' : 'none';
+  mostrarCarrito();
+});
+
+function mostrarCarrito() {
   const contenedor = document.querySelector('.carrito');
-  contenedor.innerHTML = `<h3>${sector}</h3>`;
-  lista.forEach((prod, index) => {
+  contenedor.innerHTML = '<h3>Carrito</h3>';
+  carrito.forEach((prod, index) => {
     const div = document.createElement('div');
-    div.innerHTML = `${prod.nombre} - $${prod.final} x${prod.cantidad} <button onclick="eliminarProductoSector('${sector}', ${index})">❌</button>`;
+    div.innerHTML = `${prod.nombre} - $${prod.precio.toFixed(2)} x${prod.cantidad} <button onclick="eliminarProductoCarrito(${index})">❌</button>`;
     contenedor.appendChild(div);
   });
-
-  const btnImprimir = document.createElement('button');
-  btnImprimir.textContent = 'IMPRIMIR';
-  btnImprimir.onclick = () => imprimirTicket(sector);
-  contenedor.appendChild(btnImprimir);
 }
 
-function eliminarProductoSector(sector, index) {
-  if (sector === 'Genéricos') genericos.splice(index, 1);
-  else if (sector === 'Insumos') insumos.splice(index, 1);
-  else if (sector === 'Preparados') preparados.splice(index, 1);
-  mostrarPedidoSector(sector);
+function eliminarProductoCarrito(index) {
+  carrito.splice(index, 1);
+  mostrarCarrito();
 }
 
-function imprimirTicket(tipo) {
-  const fecha = new Date();
-  const fechaTexto = fecha.toLocaleDateString();
-  const horaTexto = fecha.toLocaleTimeString();
-  let productosSector = [];
-  if (tipo === 'Genéricos') productosSector = genericos;
-  else if (tipo === 'Insumos') productosSector = insumos;
-  else if (tipo === 'Preparados') productosSector = preparados;
-
-  let contenido = `
-    <style>
-      body { font-family: monospace; font-size: 14px; }
-      .ticket { max-width: 300px; margin: auto; border: 1px solid #000; padding: 10px; }
-      .linea { border-top: 1px solid #000; margin: 10px 0; }
-      .centrado { text-align: center; }
-    </style>
-    <div class="ticket">
-      <div class="centrado">
-        <strong>FARMACIA PINTAR</strong><br>
-        SAN MIGUEL<br>
-        AV REMIGIO LOPEZ 2393<br>
-        TEL: 44555502 - WHATSAPP: 1153183466<br>
-        <strong>COMPROBANTE NO FISCAL</strong><br>
-        FECHA: ${fechaTexto} - HORA: ${horaTexto}<br>
-        <strong>${tipo.toUpperCase()}</strong>
-      </div>
-      <div class="linea"></div>
-  `;
-
-  let total = 0;
-  productosSector.forEach(prod => {
-    const subtotal = prod.final * prod.cantidad;
-    total += subtotal;
-    contenido += `
-      <div style="margin-bottom: 8px;">
-        <strong>${prod.nombre}</strong><br>
-        Precio base: $${prod.precio.toFixed(2)}<br>
-        Aumento: ${prod.porcentaje}%<br>
-        Precio final: $${prod.final.toFixed(2)} x${prod.cantidad}<br>
-        <strong>Precio Total: $${subtotal.toFixed(2)}</strong>
-      </div>
-    `;
-  });
-
-  contenido += `
-    <div class="linea"></div>
-    <div class="centrado">
-      <strong>TOTAL: $${total.toFixed(2)}</strong>
-    </div>
-    <div class="linea"></div>
-    <div style="font-size: 11px; text-align: center;">
-      IMPORTANTE: EL PRECIO ES VÁLIDO POR 12HS.<br>
-      PASADAS LAS 12HS, EL PRECIO PODRÍA VARIAR Y<br>
-      SE APLICARÁ LA DIFERENCIA. CUALQUIER RECLAMO<br>
-      SOLO CON TICKET EN MANO.
-    </div>
-    <div class="centrado" style="margin-top: 10px;">
-      <strong>GRACIAS POR SU COMPRA</strong>
-    </div>
-  </div>`;
-
-  const win = window.open('', '', 'width=300,height=600');
-  win.document.write(contenido);
-  win.print();
-}
-
-window.addEventListener('load', () => {
-  const carritoDiv = document.querySelector('.carrito');
-  const pedidoBoton = document.createElement('button');
-  pedidoBoton.textContent = 'PEDIDO';
-  pedidoBoton.onclick = () => {
-    const botones = document.createElement('div');
-    botones.className = 'botones-sector';
-    botones.innerHTML = `
-      <button onclick="mostrarPedidoSector('Genéricos')">GENÉRICOS</button>
-      <button onclick="mostrarPedidoSector('Insumos')">INSUMOS</button>
-      <button onclick="mostrarPedidoSector('Preparados')">PREPARADOS</button>
-    `;
-    carritoDiv.appendChild(botones);
-    pedidoBoton.remove();
-  };
-  carritoDiv.appendChild(pedidoBoton);
-});
