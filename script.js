@@ -45,7 +45,6 @@ document.getElementById('developer-mode').addEventListener('click', function() {
     if (password === 'Farmaco00') {
       modoDesarrollador = true;
       document.getElementById('developer-mode').textContent = 'Salir del Modo Desarrollador';
-      alert('Modo desarrollador activado');
       cargarProductos();
     } else {
       alert('Contraseña incorrecta');
@@ -92,46 +91,44 @@ function editarProducto(i) {
     productos[i].PrecioLista = parseFloat(precio);
     productos[i].PorcentajeAumento = parseFloat(porcentaje) || 0;
 
-    // Guardar los productos actualizados en localStorage
     localStorage.setItem('productos', JSON.stringify(productos));
-
     cargarProductos();
   }
 }
 
 function agregarAlCarrito(i) {
   const prod = productos[i];
+  const cantidad = prompt("¿Cuántos deseas agregar al carrito?", "1");
+  const cantidadNumerica = parseInt(cantidad) || 1;
   const precioConAumento = prod.PorcentajeAumento ? prod.PrecioLista * (1 + prod.PorcentajeAumento / 100) : prod.PrecioLista;
 
   const productoFinal = {
     nombre: prod.Producto,
     precio: precioConAumento,
-    cantidad: 1
+    cantidad: cantidadNumerica
   };
 
   const item = carrito.find(p => p.nombre === prod.Producto);
   if (item) {
-    item.cantidad++;
+    item.cantidad += cantidadNumerica;
   } else {
     carrito.push(productoFinal);
   }
-  alert(`Producto "${prod.Producto}" agregado al carrito.`);
 }
 
 function agregarAPedido(i) {
   const prod = productos[i];
   alert(`Producto "${prod.Producto}" agregado al pedido.`);
-  // Aquí puedes agregar la lógica para manejar el pedido
 }
 
 document.getElementById('toggle-cart').addEventListener('click', function() {
-  const carritoDiv = document.querySelector('.carrito');
+  const carritoDiv = document.getElementById('cart-container');
   carritoDiv.style.display = carritoDiv.style.display === 'none' ? 'block' : 'none';
   mostrarCarrito();
 });
 
 function mostrarCarrito() {
-  const contenedor = document.querySelector('.carrito');
+  const contenedor = document.getElementById('cart-container');
   contenedor.innerHTML = '<h3>Carrito</h3>';
   carrito.forEach((prod, index) => {
     const div = document.createElement('div');
